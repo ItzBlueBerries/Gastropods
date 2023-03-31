@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\Archived\CompanionController.cs" />
+    <Compile Remove="Components\Archived\ConfidantAttack.cs" />
+    <Compile Remove="Components\Archived\ConfidantController.cs" />
+    <Compile Remove="Components\Archived\GastropodRandomMove.cs" />
+    <Compile Remove="Components\Archived\ShellRetreat.cs" />
+    <Compile Remove="Components\CompanionController.cs" />
+    <Compile Remove="Components\ConfidantAttack.cs" />
+    <Compile Remove="Components\ConfidantController.cs" />
+    <Compile Remove="Components\ShellRetreat.cs" />
+    <Compile Remove="Data\Archived\Confidants\Fish.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Files\ABs\anims" />
+    <None Remove="Files\ABs\models" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Files\ABs\anims" />
+    <EmbeddedResource Include="Files\ABs\models" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Archived\CompanionController.cs" />
+    <None Include="Components\Archived\ConfidantAttack.cs" />
+    <None Include="Components\Archived\ConfidantController.cs" />
+    <None Include="Components\Archived\GastropodRandomMove.cs" />
+    <ApplicationDefinition Include="Components\Archived\ConfidantAttack.cs" />
+    <ApplicationDefinition Include="Components\Archived\ConfidantController.cs" />
+    <ApplicationDefinition Include="Components\Archived\ShellRetreat.cs" />
+    <None Include="Components\Archived\ShellRetreat.cs" />
+    <None Include="Data\Archived\Confidants\Fish.cs" />
+    <ApplicationDefinition Include="Components\Archived\CompanionController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\net6\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\net6\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Localization">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Unity.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
