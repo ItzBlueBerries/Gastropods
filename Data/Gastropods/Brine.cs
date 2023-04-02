@@ -34,9 +34,9 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        GastroUtility.CreateGastropod("Brine", true, false, null, brineGastropod, gastroPalette, gastroShellPalette, null, CreateAccessories(false));
-                        GastroUtility.CreateQueenGastropod("Brine", false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, CreateAccessories(true));
-                        GastroUtility.CreateKingGastropod("Brine", false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, CreateAccessories(true));
+                        GastroUtility.CreateGastropod("Brine", true, false, false, false, null, brineGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(false));
+                        GastroUtility.CreateQueenGastropod("Brine", false, false, false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(true));
+                        GastroUtility.CreateKingGastropod("Brine", false, false, false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, null, null, CreateAccessories(true));
                         break;
                     }
             }

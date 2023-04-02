@@ -22,12 +22,17 @@ namespace Gastropods.Assist
                         {
                             foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
                             {
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(new SlimeSet.Member
+                                SlimeSet.Member member = new SlimeSet.Member
                                 {
                                     prefab = identifiableType.prefab,
                                     identType = identifiableType,
                                     weight = weight
-                                }).ToArray();
+                                };
+
+                                if (spawnConstraint.slimeset.members.Contains(member))
+                                    break;
+
+                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                             }
                         }
                         break;
@@ -46,12 +51,17 @@ namespace Gastropods.Assist
                         {
                             foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
                             {
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(new SlimeSet.Member
+                                SlimeSet.Member member = new SlimeSet.Member
                                 {
                                     prefab = identifiableType.prefab,
                                     identType = identifiableType,
                                     weight = weight
-                                }).ToArray();
+                                };
+
+                                if (spawnConstraint.slimeset.members.Contains(member))
+                                    break;
+
+                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                             }
                         }
                         break;
@@ -70,12 +80,17 @@ namespace Gastropods.Assist
                         {
                             foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
                             {
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(new SlimeSet.Member
+                                SlimeSet.Member member = new SlimeSet.Member
                                 {
                                     prefab = identifiableType.prefab,
                                     identType = identifiableType,
                                     weight = weight
-                                }).ToArray();
+                                };
+
+                                if (spawnConstraint.slimeset.members.Contains(member))
+                                    break;
+
+                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                             }
                         }
                         break;
@@ -94,16 +109,82 @@ namespace Gastropods.Assist
                         {
                             foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
                             {
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(new SlimeSet.Member
+                                SlimeSet.Member member = new SlimeSet.Member
                                 {
                                     prefab = identifiableType.prefab,
                                     identType = identifiableType,
                                     weight = weight
-                                }).ToArray();
+                                };
+
+                                if (spawnConstraint.slimeset.members.Contains(member))
+                                    break;
+
+                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                             }
                         }
                         break;
                     }
+            }
+        }
+
+        internal class Other
+        {
+            public static void AddToPinkCanyon(string sceneName, IdentifiableType identifiableType, float weight)
+            {
+                switch (sceneName == "zoneStrand_Area2")
+                {
+                    case true:
+                        {
+                            IEnumerable<DirectedSlimeSpawner> source = GameObject.Find("zoneStrand_Area2/cellPinkCanyon/Sector").GetComponentsInChildren<DirectedSlimeSpawner>();
+                            foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                            {
+                                foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                                {
+                                    SlimeSet.Member member = new SlimeSet.Member
+                                    {
+                                        prefab = identifiableType.prefab,
+                                        identType = identifiableType,
+                                        weight = weight
+                                    };
+
+                                    if (spawnConstraint.slimeset.members.Contains(member))
+                                        break;
+
+                                    spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                }
+                            }
+                            break;
+                        }
+                }
+            }
+
+            public static void AddToSwamp(string sceneName, IdentifiableType identifiableType, float weight)
+            {
+                switch (sceneName == "zoneStrand_Area2")
+                {
+                    case true:
+                        {
+                            IEnumerable<DirectedSlimeSpawner> source = GameObject.Find("zoneStrand_Area2/cellSwamp/Sector").GetComponentsInChildren<DirectedSlimeSpawner>();
+                            foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                            {
+                                foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                                {
+                                    SlimeSet.Member member = new SlimeSet.Member
+                                    {
+                                        prefab = identifiableType.prefab,
+                                        identType = identifiableType,
+                                        weight = weight
+                                    };
+
+                                    if (spawnConstraint.slimeset.members.Contains(member))
+                                        break;
+
+                                    spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                }
+                            }
+                            break;
+                        }
+                }
             }
         }
     }

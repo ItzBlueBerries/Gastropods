@@ -47,6 +47,12 @@ internal class Utility
     {
         return Resources.FindObjectsOfTypeAll<T>().FirstOrDefault(found => found.name.Equals(name));
     }
+
+    public static Color LoadHex(string hexCode)
+    {
+        ColorUtility.TryParseHtmlString(hexCode, out var returnedColor);
+        return returnedColor;
+    }
 }
 
 internal static class Extensions

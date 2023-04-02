@@ -1,0 +1,6 @@
+WHAT SHOULD SAVE DATA IN THE FUTURE:
+HarpoonAttacker,
+FedVaccable,
+GotoSuperior (Maybe),
+LazyVaccable,
+ReproduceOnNearby (Maybe not entirely)

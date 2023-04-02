@@ -208,7 +208,7 @@ namespace Gastropods.Assist
             return gastroIdent;
         }
 
-        public static (Material, Material, Material) CreateMaterials(bool isQueen, SlimeDefinition definition1, SlimeDefinition definition2, Color[] gastroPalette, Color[] gastroShellPalette)
+        public static (Material, Material, Material) CreateMaterials(SlimeDefinition definition1, SlimeDefinition definition2, Color[] gastroPalette, Color[] gastroShellPalette)
         {
             Material gastroBodyMaterial = UnityEngine.Object.Instantiate(definition1.GetSlimeMat(0));
             gastroBodyMaterial.SetSlimeColor(gastroPalette[0], gastroPalette[1], gastroPalette[2]);
@@ -222,11 +222,10 @@ namespace Gastropods.Assist
             return (gastroBodyMaterial, gastroShellMaterial, gastroEyesMaterial);
         }
 
-        public static (GameObject, (Material, Material, Material)) CreateGastropod(string gastroType, bool shouldGotoSuperior, bool hasCustomShell, Sprite gastroIcon, IdentifiableType gastroIdent, Color[] gastroPalette, Color[] gastroShellPalette, [Optional] Mesh gastroShell, [Optional] GameObject[] gastroAccessories)
+        public static (GameObject, (Material, Material, Material)) CreateGastropod(string gastroType, bool shouldGotoSuperior, bool hasCustomEyes, bool hasCustomShell, bool hasCustomBody, Sprite gastroIcon, IdentifiableType gastroIdent, Color[] gastroPalette, Color[] gastroShellPalette, [Optional] Mesh gastroEyes, [Optional] Mesh gastroShell, [Optional] Mesh gastroBody, [Optional] GameObject[] gastroAccessories)
         {
-            (Material, Material, Material) gastroMaterial = CreateMaterials(false, Get<SlimeDefinition>("Pink"), Get<SlimeDefinition>("Pink"), gastroPalette, gastroShellPalette);
+            (Material, Material, Material) gastroMaterial = CreateMaterials(Get<SlimeDefinition>("Pink"), Get<SlimeDefinition>("Pink"), gastroPalette, gastroShellPalette);
             gastroIdent.localizedName = HarmonyPatches.LocalizationDirectorLoadTablePatch.AddTranslation("Actor", "l." + gastroType.ToLower() + "_gastropod", gastroType + " Gastropod");
-
 
             GameObject gastroPrefab = new GameObject(gastroType.ToLower() + "Gastropod");
             gastroPrefab.Prefabitize();
@@ -257,30 +256,35 @@ namespace Gastropods.Assist
             GameObject gastropodBody = new GameObject("GastropodBody");
             gastropodBody.transform.parent = gastroParts.transform;
             gastropodBody.transform.localScale *= 0.3f;
-            gastropodBody.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_body").sharedMesh;
+
+            if (!hasCustomBody)
+                gastropodBody.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_body").sharedMesh;
+            else if (hasCustomBody && gastroBody)
+                gastropodBody.AddComponent<MeshFilter>().sharedMesh = gastroBody;
+
             gastropodBody.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item1;
             // gastropodBody.AddComponent<Animator>().runtimeAnimatorController = GBundle.anims.LoadAsset("gastropod_body").Cast<RuntimeAnimatorController>();
 
             GameObject gastropodShell = new GameObject("GastropodShell");
             gastropodShell.transform.parent = gastropodBody.transform;
+            gastropodShell.transform.localScale *= 0.3f;
 
             if (!hasCustomShell)
-            {
-                gastropodShell.transform.localScale *= 0.3f;
                 gastropodShell.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_shell").sharedMesh;
-            }
             else if (hasCustomShell && gastroShell)
-            {
-                gastropodShell.transform.localScale *= 0.3f;
                 gastropodShell.AddComponent<MeshFilter>().sharedMesh = gastroShell;
-            }
 
             gastropodShell.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item2;
 
             GameObject gastropodEyes = new GameObject("GastropodEyes");
             gastropodEyes.transform.parent = gastropodBody.transform;
             gastropodEyes.transform.localScale *= 0.3f;
-            gastropodEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_eyes").sharedMesh;
+
+            if (!hasCustomEyes)
+                gastropodEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_eyes").sharedMesh;
+            else if (hasCustomEyes && gastroEyes)
+                gastropodEyes.AddComponent<MeshFilter>().sharedMesh = gastroEyes;
+
             gastropodEyes.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item3;
 
             GameObject gastroDeco = new GameObject("GastroDeco");
@@ -299,9 +303,9 @@ namespace Gastropods.Assist
             return (gastroPrefab, gastroMaterial);
         }
     
-        public static (GameObject, (Material, Material, Material)) CreateQueenGastropod(string gastroType, bool hasCustomShell, Sprite gastroIcon, IdentifiableType gastroIdent, Il2CppSystem.Type fedVaccable, Il2CppSystem.Type reproduceOnNearby, Color[] gastroPalette, Color[] gastroShellPalette, [Optional] Mesh gastroShell, [Optional] GameObject[] gastroAccessories)
+        public static (GameObject, (Material, Material, Material)) CreateQueenGastropod(string gastroType, bool hasCustomEyes, bool hasCustomShell, bool hasCustomBody, Sprite gastroIcon, IdentifiableType gastroIdent, Il2CppSystem.Type fedVaccable, Il2CppSystem.Type reproduceOnNearby, Color[] gastroPalette, Color[] gastroShellPalette, [Optional] Mesh gastroEyes, [Optional] Mesh gastroShell, [Optional] Mesh gastroBody, [Optional] GameObject[] gastroAccessories)
         {
-            (Material, Material, Material) gastroMaterial = CreateMaterials(true, Get<SlimeDefinition>("Pink"), Get<SlimeDefinition>("Pink"), gastroPalette, gastroShellPalette);
+            (Material, Material, Material) gastroMaterial = CreateMaterials(Get<SlimeDefinition>("Pink"), Get<SlimeDefinition>("Pink"), gastroPalette, gastroShellPalette);
             gastroIdent.localizedName = HarmonyPatches.LocalizationDirectorLoadTablePatch.AddTranslation("Actor", "l." + gastroType.ToLower() + "_queen_gastropod", gastroType + " Queen Gastropod");
 
             GameObject gastroPrefab = new GameObject(gastroType.ToLower() + "QueenGastropod");
@@ -326,30 +330,35 @@ namespace Gastropods.Assist
             GameObject gastropodBody = new GameObject("GastropodBody");
             gastropodBody.transform.parent = gastroParts.transform;
             gastropodBody.transform.localScale *= 0.6f;
-            gastropodBody.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_body").sharedMesh;
+
+            if (!hasCustomBody)
+                gastropodBody.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_body").sharedMesh;
+            else if (hasCustomBody && gastroBody)
+                gastropodBody.AddComponent<MeshFilter>().sharedMesh = gastroBody;
+
             gastropodBody.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item1;
             // gastropodBody.AddComponent<Animator>().runtimeAnimatorController = GBundle.anims.LoadAsset("gastropod_body").Cast<RuntimeAnimatorController>();
 
             GameObject gastropodShell = new GameObject("GastropodShell");
             gastropodShell.transform.parent = gastropodBody.transform;
+            gastropodShell.transform.localScale *= 0.6f;
 
             if (!hasCustomShell)
-            {
-                gastropodShell.transform.localScale *= 0.6f;
                 gastropodShell.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("queen_gastropod_shell").sharedMesh;
-            }
             else if (hasCustomShell && gastroShell)
-            {
-                gastropodShell.transform.localScale *= 0.6f;
                 gastropodShell.AddComponent<MeshFilter>().sharedMesh = gastroShell;
-            }
 
             gastropodShell.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item2;
 
             GameObject gastropodEyes = new GameObject("GastropodEyes");
             gastropodEyes.transform.parent = gastropodBody.transform;
             gastropodEyes.transform.localScale *= 0.6f;
-            gastropodEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("queen_gastropod_eyes").sharedMesh;
+
+            if (!hasCustomEyes)
+                gastropodEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("queen_gastropod_eyes").sharedMesh;
+            else if (hasCustomEyes && gastroEyes)
+                gastropodEyes.AddComponent<MeshFilter>().sharedMesh = gastroEyes;
+
             gastropodEyes.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item3;
 
             GameObject gastroDeco = new GameObject("GastroDeco");
@@ -368,9 +377,9 @@ namespace Gastropods.Assist
             return (gastroPrefab, gastroMaterial);
         }
 
-        public static (GameObject, (Material, Material, Material)) CreateKingGastropod(string gastroType, bool hasCustomShell, Sprite gastroIcon, IdentifiableType gastroIdent, Color[] gastroPalette, Color[] gastroShellPalette, [Optional] Mesh gastroShell, [Optional] GameObject[] gastroAccessories)
+        public static (GameObject, (Material, Material, Material)) CreateKingGastropod(string gastroType, bool hasCustomEyes, bool hasCustomShell, bool hasCustomBody, Sprite gastroIcon, IdentifiableType gastroIdent, Color[] gastroPalette, Color[] gastroShellPalette, [Optional] Mesh gastroEyes, [Optional] Mesh gastroShell, [Optional] Mesh gastroBody, [Optional] GameObject[] gastroAccessories)
         {
-            (Material, Material, Material) gastroMaterial = CreateMaterials(true, Get<SlimeDefinition>("Pink"), Get<SlimeDefinition>("Pink"), gastroPalette, gastroShellPalette);
+            (Material, Material, Material) gastroMaterial = CreateMaterials(Get<SlimeDefinition>("Pink"), Get<SlimeDefinition>("Pink"), gastroPalette, gastroShellPalette);
             gastroIdent.localizedName = HarmonyPatches.LocalizationDirectorLoadTablePatch.AddTranslation("Actor", "l." + gastroType.ToLower() + "_king_gastropod", gastroType + " King Gastropod");
 
             GameObject gastroPrefab = new GameObject(gastroType.ToLower() + "KingGastropod");
@@ -395,30 +404,35 @@ namespace Gastropods.Assist
             GameObject gastropodBody = new GameObject("GastropodBody");
             gastropodBody.transform.parent = gastroParts.transform;
             gastropodBody.transform.localScale *= 0.7f;
-            gastropodBody.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_body").sharedMesh;
+
+            if (!hasCustomBody)
+                gastropodBody.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("gastropod_body").sharedMesh;
+            else if (hasCustomBody && gastroBody)
+                gastropodBody.AddComponent<MeshFilter>().sharedMesh = gastroBody;
+
             gastropodBody.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item1;
             // gastropodBody.AddComponent<Animator>().runtimeAnimatorController = GBundle.anims.LoadAsset("gastropod_body").Cast<RuntimeAnimatorController>();
 
             GameObject gastropodShell = new GameObject("GastropodShell");
             gastropodShell.transform.parent = gastropodBody.transform;
+            gastropodShell.transform.localScale *= 0.7f;
 
             if (!hasCustomShell)
-            {
-                gastropodShell.transform.localScale *= 0.7f;
                 gastropodShell.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("queen_gastropod_shell").sharedMesh;
-            }
             else if (hasCustomShell && gastroShell)
-            {
-                gastropodShell.transform.localScale *= 0.7f;
                 gastropodShell.AddComponent<MeshFilter>().sharedMesh = gastroShell;
-            }
 
             gastropodShell.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item2;
 
             GameObject gastropodEyes = new GameObject("GastropodEyes");
             gastropodEyes.transform.parent = gastropodBody.transform;
             gastropodEyes.transform.localScale *= 0.7f;
-            gastropodEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("queen_gastropod_eyes").sharedMesh;
+
+            if (!hasCustomEyes)
+                gastropodEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("queen_gastropod_eyes").sharedMesh;
+            else if (hasCustomEyes && gastroEyes)
+                gastropodEyes.AddComponent<MeshFilter>().sharedMesh = gastroEyes;
+
             gastropodEyes.AddComponent<MeshRenderer>().sharedMaterial = gastroMaterial.Item3;
 
             GameObject gastroDeco = new GameObject("GastroDeco");

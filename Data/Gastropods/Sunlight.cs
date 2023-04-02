@@ -34,12 +34,12 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        GastroUtility.CreateGastropod("Sunlight", true, true, null, sunlightGastropod, gastroPalette, gastroShellPalette,
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_gastropod_shell").sharedMesh, CreateAccessories(false));
-                        GastroUtility.CreateQueenGastropod("Sunlight", true, null, sunlightQueenGastropod, Il2CppType.Of<SunlightFedVaccable>(), Il2CppType.Of<SunlightReproduce>(), gastroPalette, gastroShellPalette, 
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, CreateAccessories(true));
-                        GastroUtility.CreateKingGastropod("Sunlight", true, null, sunlightKingGastropod, gastroDiffPalette, gastroDiffShellPalette,
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, CreateAccessories(true));
+                        GastroUtility.CreateGastropod("Sunlight", true, false, true, false, null, sunlightGastropod, gastroPalette, gastroShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_gastropod_shell").sharedMesh, null, CreateAccessories(false));
+                        GastroUtility.CreateQueenGastropod("Sunlight", false, true, false, null, sunlightQueenGastropod, Il2CppType.Of<SunlightFedVaccable>(), Il2CppType.Of<SunlightReproduce>(), gastroPalette, gastroShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
+                        GastroUtility.CreateKingGastropod("Sunlight", false, true, false, null, sunlightKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
                         break;
                     }
             }

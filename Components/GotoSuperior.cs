@@ -39,7 +39,7 @@ namespace Gastropods.Components
                 FindSuperiorInScene(); time = timeDir.HoursFromNowOrStart(UnityEngine.Random.Range(1, 3));
         }
 
-        void FixedUpdate() => MoveToQueen();
+        void FixedUpdate() => MoveToSuperior();
 
         void FindSuperiorInScene()
         {
@@ -67,7 +67,7 @@ namespace Gastropods.Components
             }
         }
 
-        void MoveToQueen()
+        void MoveToSuperior()
         {
             if (target != null)
             {

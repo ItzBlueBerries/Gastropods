@@ -35,13 +35,15 @@ namespace Gastropods
                 //Here you have loaded assets like Identifiables and GameContext
                 case "GameCore":
                     {
+                        ModRegistry.LoadGastros(sceneName);
+                        ModRegistry.LoadFears();
+
                         foreach (IdentifiableType definition in Get<IdentifiableTypeGroup>("BaseSlimeGroup").memberTypes)
                             if (definition.Cast<SlimeDefinition>() != null && definition.Cast<SlimeDefinition>().Diet != null)
                                 definition.Cast<SlimeDefinition>().Diet.RefreshEatMap(SRSingleton<GameContext>.Instance.SlimeDefinitions, definition.Cast<SlimeDefinition>());
                         foreach (IdentifiableType definition in Get<IdentifiableTypeGroup>("LargoGroup").memberTypes)
                             if (definition.Cast<SlimeDefinition>() != null && definition.Cast<SlimeDefinition>().Diet != null)
                                 definition.Cast<SlimeDefinition>().Diet.RefreshEatMap(SRSingleton<GameContext>.Instance.SlimeDefinitions, definition.Cast<SlimeDefinition>());
-                        ModRegistry.LoadGastros(sceneName);
                         break;
                     }
                 //Here you have loaded SceneContext
