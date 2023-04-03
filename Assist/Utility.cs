@@ -1,4 +1,5 @@
-﻿using Il2Cpp;
+﻿using Gastropods;
+using Il2Cpp;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -21,6 +22,16 @@ internal class Utility
         {
             var newG = UnityEngine.Object.Instantiate(prefab, DisabledParent);
             return newG;
+        }
+    }
+
+    public static class Gastro
+    {
+        public static bool IsGastropod(IdentifiableType ident)
+        {
+            if (GastroEntry.GASTROPODS.Contains(ident))
+                return true;
+            return false;
         }
     }
 

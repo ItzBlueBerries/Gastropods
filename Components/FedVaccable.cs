@@ -59,6 +59,12 @@ namespace Gastropods.Components
             if (!collision.gameObject.GetComponent<IdentifiableActor>())
                 return;
 
+            foreach (IdentifiableType gastropod in GastroEntry.GASTROPODS)
+            {
+                if (collision.gameObject.GetComponent<IdentifiableActor>().identType == gastropod)
+                    return;
+            }
+
             try
             {
                 foreach (IdentifiableTypeGroup identifiableTypeGroup in feedTypes)

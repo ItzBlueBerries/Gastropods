@@ -28,7 +28,6 @@ namespace Gastropods.Components
         public float searchRadius;
         public int amountTillFull = 3;
         public int timeTillSearch = UnityEngine.Random.Range(1, 3);
-        public bool isNotSuperior = false;
 
         void Start()
         {
@@ -36,7 +35,7 @@ namespace Gastropods.Components
             gastroBody = GetComponent<Rigidbody>();
             searchTime = timeDir.HoursFromNowOrStart(timeTillSearch);
 
-            if (isNotSuperior)
+            if (!gameObject.name.Contains("QueenGastropod") || !gameObject.name.Contains("KingGastropod") && Gastro.IsGastropod(GetComponent<IdentifiableActor>().identType))
                 amountTillFull = 6;
             amountLeft = amountTillFull;
 
@@ -77,14 +76,29 @@ namespace Gastropods.Components
 
         void FindFoodInScene()
         {
-            foreach (GameObject gameObject in FindObjectsOfType<GameObject>())
+            foreach (GameObject obj in FindObjectsOfType<GameObject>())
             {
-                if (Get<IdentifiableTypeGroup>("MeatGroup").IsMember(gameObject.GetComponent<IdentifiableActor>().identType) || Get<IdentifiableTypeGroup>("BaseSlimeGroup").IsMember(gameObject.GetComponent<IdentifiableActor>().identType))
+                if (obj == gameObject)
+                    continue;
+
+                if (!obj.GetComponent<Rigidbody>())
+                    continue;
+
+                if (!obj.GetComponent<IdentifiableActor>())
+                    continue;
+
+                foreach (IdentifiableType gastropod in GastroEntry.GASTROPODS)
                 {
-                    float distance = Vector3.Distance(transform.position, gameObject.transform.position);
-                    if (distance <= searchRadius)
-                        target = gameObject.transform; break;
+                    if (obj.GetComponent<IdentifiableActor>().identType == gastropod)
+                        return;
                 }
+
+                if (!Get<IdentifiableTypeGroup>("MeatGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType) || !Get<IdentifiableTypeGroup>("BaseSlimeGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
+                    continue;
+
+                float distance = Vector3.Distance(transform.position, obj.transform.position);
+                if (distance <= searchRadius)
+                    target = obj.transform; break;
             }
         }
 
@@ -104,10 +118,6 @@ namespace Gastropods.Components
         {
             if (Get<IdentifiableTypeGroup>("MeatGroup").IsMember(gameObject.GetComponent<IdentifiableActor>().identType) || Get<IdentifiableTypeGroup>("BaseSlimeGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
             {
-                Vector3 direction = (obj.transform.position - transform.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-                GetComponent<Rigidbody>().MoveRotation(Quaternion.Slerp(GetComponent<Rigidbody>().rotation, targetRotation, 10 * Time.deltaTime));
                 SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().EatFX, transform.position, transform.rotation);
                 Destroyer.DestroyActor(obj, "HungryAttacker.OnCollisionEnter");
                 amountLeft -= 1;
@@ -138,7 +148,7 @@ namespace Gastropods.Components
 
             foreach (IdentifiableType gastropod in GastroEntry.GASTROPODS)
             {
-                if (!obj.GetComponent<IdentifiableActor>().identType == gastropod)
+                if (obj.GetComponent<IdentifiableActor>().identType == gastropod)
                     return;
             }
 

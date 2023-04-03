@@ -22,8 +22,8 @@ namespace Gastropods.Assist.Extra
                     identType = ident,
                     maxSearchRadius = maxSearchRadius,
                     minSearchRadius = minSearchRadius,
-                    maxThreatFearPerSec = fearProfile.threats[0].maxThreatFearPerSec,
-                    minThreatFearPerSec = fearProfile.threats[0].minThreatFearPerSec
+                    maxThreatFearPerSec = fearProfile.threats[1].maxThreatFearPerSec,
+                    minThreatFearPerSec = fearProfile.threats[1].minThreatFearPerSec
                 };
 
                 if (fearProfile.threats.Contains(threatEntry))

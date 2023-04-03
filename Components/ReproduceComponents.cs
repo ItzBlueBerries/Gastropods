@@ -33,4 +33,13 @@ namespace Gastropods.Components.ReproduceOnNearbys
             gastropodPrefab = Get<IdentifiableType>("PrimalGastropod").prefab;
         }
     }
+
+    internal class PowderReproduce : ReproduceOnNearby
+    {
+        public override void Start()
+        {
+            base.Start();
+            gastropodPrefab = Get<IdentifiableType>("PowderGastropod").prefab;
+        }
+    }
 }

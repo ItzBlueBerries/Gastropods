@@ -43,27 +43,32 @@ namespace Gastropods.Components
 
         void FindSuperiorInScene()
         {
-            foreach (GameObject gameObject in FindObjectsOfType<GameObject>())
+            foreach (GameObject obj in FindObjectsOfType<GameObject>())
             {
+                if (obj == gameObject)
+                    continue;
+
                 float rand = UnityEngine.Random.Range(0f, 1f);
                 if (rand >= 0.5f)
                 {
-                    if (gameObject.name.Contains(GetComponent<IdentifiableActor>().identType.name.Replace("Gastropod", "").ToLower() + "QueenGastropod"))
+                    if (obj.name.Contains(GetComponent<IdentifiableActor>().identType.name.Replace("Gastropod", "").ToLower() + "QueenGastropod"))
                     {
-                        float distance = Vector3.Distance(transform.position, gameObject.transform.position);
+                        float distance = Vector3.Distance(transform.position, obj.transform.position);
                         if (distance <= searchRadius)
-                            target = gameObject.transform; break;
+                            target = obj.transform; break;
                     }
                 }
-                else if (rand <= 0.5f)
+                else if (rand <= 0.5f && rand >= 0.2f)
                 {
-                    if (gameObject.name.Contains(GetComponent<IdentifiableActor>().identType.name.Replace("Gastropod", "").ToLower() + "KingGastropod"))
+                    if (obj.name.Contains(GetComponent<IdentifiableActor>().identType.name.Replace("Gastropod", "").ToLower() + "KingGastropod"))
                     {
-                        float distance = Vector3.Distance(transform.position, gameObject.transform.position);
+                        float distance = Vector3.Distance(transform.position, obj.transform.position);
                         if (distance <= searchRadius)
-                            target = gameObject.transform; break;
+                            target = obj.transform; break;
                     }
                 }
+                else if (rand <= 0.2f)
+                    target = null;
             }
         }
 

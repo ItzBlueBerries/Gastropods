@@ -26,7 +26,12 @@ namespace Gastropods.Data.Gastropods
         public static void Initialize()
         {
             primalGastropod = GastroUtility.CreateIdentifiable("Primal", false, false, LoadHex("#964B00"));
+            primalQueenGastropod = GastroUtility.CreateIdentifiable("Primal", true, false, LoadHex("#964B00"));
+            primalKingGastropod = GastroUtility.CreateIdentifiable("Primal", false, true, LoadHex("#964B00"));
+
             GastroEntry.DEFENSIVE_GASTROPODS.Add(primalGastropod);
+            GastroEntry.DEFENSIVE_GASTROPODS.Add(primalQueenGastropod);
+            GastroEntry.DEFENSIVE_GASTROPODS.Add(primalKingGastropod);
         }
 
         public static void Load(string sceneName)
@@ -37,7 +42,13 @@ namespace Gastropods.Data.Gastropods
                     {
                         GastroUtility.CreateGastropod("Primal", true, false, true, false, null, primalGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("primal_gastropod_shell").sharedMesh, null, CreateAccessories(false))
-                            .Item1.AddComponent<HungryAttacker>().isNotSuperior = true;
+                            .Item1.AddComponent<HungryAttacker>();
+                        GastroUtility.CreateQueenGastropod("Primal", false, true, false, null, primalQueenGastropod, Il2CppType.Of<PrimalFedVaccable>(), Il2CppType.Of<PrimalReproduce>(), gastroPalette, gastroShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("primal_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true))
+                            .Item1.AddComponent<HungryAttacker>();
+                        GastroUtility.CreateKingGastropod("Primal", false, true, false, null, primalKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("primal_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true))
+                            .Item1.AddComponent<HungryAttacker>();
                         break;
                     }
             }

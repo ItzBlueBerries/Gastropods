@@ -33,14 +33,18 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<HarpoonAttacker>();
             ClassInjector.RegisterTypeInIl2Cpp<HarpoonKillOnTouch>();
             ClassInjector.RegisterTypeInIl2Cpp<HungryAttacker>();
+            ClassInjector.RegisterTypeInIl2Cpp<ObjectRotation>();
+            ClassInjector.RegisterTypeInIl2Cpp<HourlyMaterialChange>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<PrimalFedVaccable>();
+            ClassInjector.RegisterTypeInIl2Cpp<PowderFedVaccable>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<PrimalReproduce>();
+            ClassInjector.RegisterTypeInIl2Cpp<PowderReproduce>();
         }
 
         public static void InitializeGastros()
@@ -49,6 +53,7 @@ namespace Gastropods.Assist
             Sunlight.Initialize();
             Toxin.Initialize();
             Primal.Initialize();
+            Powder.Initialize();
         }
 
         public static void LoadGastros(string sceneName)
@@ -65,6 +70,7 @@ namespace Gastropods.Assist
             Sunlight.Load(sceneName);
             Toxin.Load(sceneName);
             Primal.Load(sceneName);
+            Powder.Load(sceneName);
         }
 
         public static void LoadSpawners(string sceneName)
@@ -80,12 +86,15 @@ namespace Gastropods.Assist
             ModSpawner.AddToFields(sceneName, Get<IdentifiableType>("ToxinGastropod"), UnityEngine.Random.Range(0.08f, 0.09f));
             ModSpawner.AddToStrand(sceneName, Get<IdentifiableType>("ToxinGastropod"), UnityEngine.Random.Range(0.05f, 0.08f));
             ModSpawner.AddToGorge(sceneName, Get<IdentifiableType>("ToxinGastropod"), UnityEngine.Random.Range(0.08f, 0.09f));
+
+            ModSpawner.AddToGorge(sceneName, Get<IdentifiableType>("PrimalQueenGastropod"), UnityEngine.Random.Range(0.03f, 0.05f));
+            ModSpawner.AddToGorge(sceneName, Get<IdentifiableType>("PrimalKingGastropod"), UnityEngine.Random.Range(0.03f, 0.05f));
         }
 
         public static void LoadFears()
         {
             foreach (IdentifiableType defensiveGastropod in GastroEntry.DEFENSIVE_GASTROPODS)
-                ModFears.AddToAllProfiles(defensiveGastropod, 15, 0);
+                ModFears.AddToAllProfiles(defensiveGastropod, 15, 9);
             ModFears.RemoveFromProfile(Get<IdentifiableType>("ToxinGastropod"), Get<GameObject>("slimeAngler"));
         }
     }
