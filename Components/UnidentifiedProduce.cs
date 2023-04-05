@@ -8,17 +8,14 @@ using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Components
 {
-    internal class UnidentifiedProduce : MonoBehaviour
+    internal class UnidentifiedTransform : MonoBehaviour
     {
-        void ProduceRareActor()
+        void TransformIntoActor()
         {
             void SpawnActorAndDestroy(GameObject actor)
             {
+                SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().TransformFX, transform.position, transform.rotation);
                 SRBehaviour.InstantiateActor(actor, SRSingleton<SceneContext>.Instance.RegionRegistry.CurrentSceneGroup, transform.position, transform.rotation);
-
-                GetComponent<Rigidbody>().AddForce(new Vector3(Randoms.SHARED.GetFloat(225f), 450f, Randoms.SHARED.GetFloat(225f)));
-                SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Phosphor").prefab.GetComponent<DestroyOutsideHoursOfDay>().destroyFX, transform.position, transform.rotation);
-
                 Destroyer.DestroyActor(gameObject, "UnidentifiedProduce.ProduceRareItem.SpawnActorAndDestroy");
             }
 
@@ -58,14 +55,12 @@ namespace Gastropods.Components
             if (Gastro.IsGastropod(obj.GetComponent<IdentifiableActor>().identType))
                 return;
 
-            foreach (IdentifiableTypeGroup identifiableTypeGroup in Resources.FindObjectsOfTypeAll<IdentifiableTypeGroup>())
-            {
-                if (!identifiableTypeGroup.IsMember(obj.GetComponent<IdentifiableActor>().identType))
-                    return;
-            }
+            if (!Get<IdentifiableTypeGroup>("CraftGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
+                return;
 
             SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().EatFX, transform.position, transform.rotation);
-            ProduceRareActor();
+            Destroyer.DestroyActor(obj, "UnidentifiedProduce.OnCollisionEnter");
+            TransformIntoActor();
         }
     }
 }

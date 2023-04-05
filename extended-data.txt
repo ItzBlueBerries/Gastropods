@@ -3,5 +3,6 @@ HarpoonAttacker,
 FedVaccable,
 GotoSuperior (Maybe),
 LazyVaccable,
-ReproduceOnNearby (Maybe not entirely)
-HungryAttacker
+ReproduceOnNearby (Maybe not entirely),
+HungryAttacker,
+DestroyAfterHours

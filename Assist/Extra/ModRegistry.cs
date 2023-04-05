@@ -34,8 +34,11 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<HarpoonKillOnTouch>();
             ClassInjector.RegisterTypeInIl2Cpp<HungryAttacker>();
             ClassInjector.RegisterTypeInIl2Cpp<ObjectRotation>();
-            ClassInjector.RegisterTypeInIl2Cpp<UnidentifiedProduce>();
+            ClassInjector.RegisterTypeInIl2Cpp<UnidentifiedTransform>();
             ClassInjector.RegisterTypeInIl2Cpp<RandomRigidMovement>();
+            ClassInjector.RegisterTypeInIl2Cpp<DestroyAfterHours>();
+            ClassInjector.RegisterTypeInIl2Cpp<ObjectTwirl>();
+            ClassInjector.RegisterTypeInIl2Cpp<BounceActorOnCollision>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightFedVaccable>();

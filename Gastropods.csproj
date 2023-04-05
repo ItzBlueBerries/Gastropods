@@ -4,6 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <Title>Gastropods</Title>
+    <Description>The snail-like creatures of Rainbow Island. Different types and food choices. Some slimes will also eat them.</Description>
+    <Copyright>FruitsyOG</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ItzBlueBerries/Gastropods</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -89,6 +95,13 @@
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
