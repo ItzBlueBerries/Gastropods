@@ -129,6 +129,6 @@ Powder is the fifth gastropod to be created in the mod and the first to have kin
 
 ### Unidentified
 
-Unidentified gastropods will bounce around and move a lot making them hard to feed. They cannot be vacced but you can throw a **craft** item at them and they'll transform randomly into a rare item in the mod (including Moondew Nectar as extra) or a rare slime in the game. (Lucky & Gold) (They're also the sixith gastropod)
+Unidentified gastropods will bounce around and move a lot making them hard to feed. They cannot be vacced but you can throw a **craft** item at them and they'll transform randomly into a rare item in the mod (including Moondew Nectar as extra) or a rare slime in the game. (Lucky & Gold) (They're also the sixth gastropod)
 
 ![Unidentified](Files/Images/unidentified.gif)
