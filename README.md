@@ -101,12 +101,14 @@ Some of these things you'll just need to learn from experience with using the mo
 ### Brine
 
 Brine is the first gastropod to be created in the mod and is probably one of the most normal of them all. They have a fish confidant.
+They'll also eat Veggies. Primarily used for getting the Queen to move.
 
 ![Brine](Files/Images//brine.gif)
 
 ### Sunlight
 
 Sunlight is the second gastropod to be created in the mod and is also one of the most normal of them all. They have a sun confidant.
+They'll also eat Fruit. Primarily used for getting the Queen to move.
 
 ![Sunlight](Files/Images/sunlight.png)
 
@@ -119,12 +121,14 @@ Toxin is the third gastropod to be created in the mod and the first defensive on
 ### Primal
 
 Primal is the fourth gastropod to be created in the mod and the second defensive one. They have a snake confidant.
+They'll also eat Meat. Primarily used for getting the Queen to move. (Not Gastropods)
 
 ![Primal](Files/Images/primal.png)
 
 ### Powder
 
 Powder is the fifth gastropod to be created in the mod and the first to have kings & queens that do not have more than one confidant. They have a snowball confidant.
+They'll also eat Veggies & Fruit. Primarily used for getting the Queen to move.
 
 ![Powder](Files/Images/powder.gif)
 
