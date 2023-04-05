@@ -43,7 +43,8 @@ Here are some facts:
 - Kings will move but eventually have a "lazy" mode. They will not move at all and you cannot change this. They usually stop within a little over an hour in-game.
 - Queens will search for a King every now and then. I will not specify as it can be randomized but once they've found their king (must be close enough / nearby) they will begin the time they need to spawn a gastropod of their corresponding type. Kings do not search whatsoever.
 - You require a queen and a king of the same type for reproduction, it will not work any other way.
-- The reproduction time is randomized so it cannot be specified but every now and then within the interval, they will spawn a gastropod fo their corresponding type nearby.
+- The reproduction time is randomized so it cannot be specified but every now and then within the interval, they will spawn a gastropod of their corresponding type nearby.
+- To tell a Queen & a King apart, it is told by their height and color differences. Kings usually have a differ in color, for example being darker while Queens will have the normal colors as their corresponding type does. Kings are also slightly bigger as said by height as well.
 
 With these facts, you should know enough about king & queen gastropods in general! But there is much more that could come to them but this is overall what you need to know.
 
