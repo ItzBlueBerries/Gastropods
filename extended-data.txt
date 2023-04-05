@@ -4,3 +4,4 @@ FedVaccable,
 GotoSuperior (Maybe),
 LazyVaccable,
 ReproduceOnNearby (Maybe not entirely)
+HungryAttacker

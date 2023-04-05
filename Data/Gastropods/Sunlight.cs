@@ -34,7 +34,7 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        GastroUtility.CreateGastropod("Sunlight", true, false, true, false, null, sunlightGastropod, gastroPalette, gastroShellPalette, null,
+                        GastroUtility.CreateGastropod("Sunlight", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodSunlight")), sunlightGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("sunlight_gastropod_shell").sharedMesh, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Sunlight", false, true, false, null, sunlightQueenGastropod, Il2CppType.Of<SunlightFedVaccable>(), Il2CppType.Of<SunlightReproduce>(), gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));

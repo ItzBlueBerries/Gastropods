@@ -35,12 +35,12 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        GastroUtility.CreateGastropod("Powder", true, false, true, false, null, powderGastropod, gastroPalette, gastroShellPalette, null,
+                        GastroUtility.CreateGastropod("Powder", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodPowder")), powderGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false));
-                        GastroUtility.CreateQueenGastropod("Powder", false, true, false, null, powderGastropod, Il2CppType.Of<PowderFedVaccable>(), Il2CppType.Of<PowderReproduce>(), gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false));
-                        GastroUtility.CreateKingGastropod("Powder", true, false, true, false, null, powderGastropod, gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false));
+                        GastroUtility.CreateQueenGastropod("Powder", false, true, false, null, powderQueenGastropod, Il2CppType.Of<PowderFedVaccable>(), Il2CppType.Of<PowderReproduce>(), gastroPalette, gastroShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
+                        GastroUtility.CreateKingGastropod("Powder", false, true, false, null, powderKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
                         break;
                     }
             }
@@ -71,6 +71,23 @@ namespace Gastropods.Data.Gastropods
                 powderSnowballEyes.AddComponent<MeshRenderer>().sharedMaterial = blackEyesMaterial;
 
                 return new GameObject[] { powderSnowball };
+            }
+            else if (isSuperior)
+            {
+                GameObject powderQueenSnowball1;
+                GameObject powderQueenSnowball1Eyes;
+
+                powderQueenSnowball1 = new GameObject("PowderSnowballOne");
+                powderQueenSnowball1.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("powder_queen_snowball_one").sharedMesh;
+                powderQueenSnowball1.AddComponent<MeshRenderer>().sharedMaterial = snowballMaterial;
+                powderQueenSnowball1.AddComponent<ObjectRotation>();
+
+                powderQueenSnowball1Eyes = new GameObject("PowderSnowballOneEyes");
+                powderQueenSnowball1Eyes.transform.parent = powderQueenSnowball1.transform;
+                powderQueenSnowball1Eyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("powder_queen_snowball_one_eyes").sharedMesh;
+                powderQueenSnowball1Eyes.AddComponent<MeshRenderer>().sharedMaterial = blackEyesMaterial;
+
+                return new GameObject[] { powderQueenSnowball1 };
             }
 
             return new GameObject[] { };

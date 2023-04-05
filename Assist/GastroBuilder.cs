@@ -198,12 +198,12 @@ namespace Gastropods.Assist
             gastroIdent.foodGroup = Get<IdentifiableTypeGroup>("MeatGroup");
             gastroIdent.color = gastroColor;
 
-            GastroEntry.GASTROPODS.Add(gastroIdent);
+            Gastro.GASTROPODS.Add(gastroIdent);
 
             if (isQueen)
-                GastroEntry.QUEEN_GASTROPODS.Add(gastroIdent);
+                Gastro.QUEEN_GASTROPODS.Add(gastroIdent);
             else if (isKing && !isQueen)
-                GastroEntry.KING_GASTROPODS.Add(gastroIdent);
+                Gastro.KING_GASTROPODS.Add(gastroIdent);
 
             return gastroIdent;
         }

@@ -21,7 +21,8 @@ namespace Gastropods.Data.Gastropods
         public static void Initialize()
         {
             toxinGastropod = GastroUtility.CreateIdentifiable("Toxin", false, false, LoadHex("#A020F0"));
-            GastroEntry.DEFENSIVE_GASTROPODS.Add(toxinGastropod);
+            Gastro.DEFENSIVE_GASTROPODS.Add(toxinGastropod);
+            Gastro.DO_SOMETHING_GASTROPODS.Add(toxinGastropod);
         }
 
         public static void Load(string sceneName)
@@ -30,7 +31,7 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        GastroUtility.CreateGastropod("Toxin", false, true, true, false, null, toxinGastropod, gastroPalette, gastroShellPalette,
+                        GastroUtility.CreateGastropod("Toxin", false, true, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodToxin")), toxinGastropod, gastroPalette, gastroShellPalette,
                             GBundle.models.LoadFromObject<MeshFilter>("toxin_gastropod_eyes").sharedMesh,
                             GBundle.models.LoadFromObject<MeshFilter>("toxin_gastropod_shell").sharedMesh, null, CreateAccessories())
                             .Item1.AddComponent<HarpoonAttacker>();

@@ -19,7 +19,7 @@ namespace Gastropods.Components
             if (!obj.GetComponent<IdentifiableActor>())
                 return;
 
-            foreach (IdentifiableType gastropod in GastroEntry.GASTROPODS)
+            foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
             {
                 if (obj.GetComponent<IdentifiableActor>().identType == gastropod)
                     return;

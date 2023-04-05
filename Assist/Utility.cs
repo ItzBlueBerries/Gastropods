@@ -27,9 +27,58 @@ internal class Utility
 
     public static class Gastro
     {
+        public static class Items
+        {
+            internal static HashSet<IdentifiableType> COMMON_ITEMS = new HashSet<IdentifiableType>();
+            internal static HashSet<IdentifiableType> RARE_ITEMS = new HashSet<IdentifiableType>();
+        }
+
+        internal static HashSet<IdentifiableType> GASTROPODS = new HashSet<IdentifiableType>();
+        internal static HashSet<IdentifiableType> QUEEN_GASTROPODS = new HashSet<IdentifiableType>();
+        internal static HashSet<IdentifiableType> KING_GASTROPODS = new HashSet<IdentifiableType>();
+
+        internal static HashSet<IdentifiableType> DEFENSIVE_GASTROPODS = new HashSet<IdentifiableType>();
+        internal static HashSet<IdentifiableType> RARE_GASTROPODS = new HashSet<IdentifiableType>();
+        internal static HashSet<IdentifiableType> DO_SOMETHING_GASTROPODS = new HashSet<IdentifiableType>();
+
         public static bool IsGastropod(IdentifiableType ident)
         {
-            if (GastroEntry.GASTROPODS.Contains(ident))
+            if (GASTROPODS.Contains(ident))
+                return true;
+            return false;
+        }
+
+        public static bool IsQueenGastropod(IdentifiableType ident)
+        {
+            if (QUEEN_GASTROPODS.Contains(ident))
+                return true;
+            return false;
+        }
+
+        public static bool IsKingGastropod(IdentifiableType ident)
+        {
+            if (KING_GASTROPODS.Contains(ident))
+                return true;
+            return false;
+        }
+
+        public static bool IsDefensiveGastropod(IdentifiableType ident)
+        {
+            if (DEFENSIVE_GASTROPODS.Contains(ident))
+                return true;
+            return false;
+        }
+
+        public static bool IsRareGastropod(IdentifiableType ident)
+        {
+            if (RARE_GASTROPODS.Contains(ident))
+                return true;
+            return false;
+        }
+
+        public static bool IsDoSomethingGastropod(IdentifiableType ident)
+        {
+            if (DO_SOMETHING_GASTROPODS.Contains(ident))
                 return true;
             return false;
         }

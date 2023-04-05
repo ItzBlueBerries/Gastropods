@@ -12,11 +12,6 @@ namespace Gastropods
 {
     internal class GastroEntry : MelonMod
     {
-        internal static HashSet<IdentifiableType> GASTROPODS = new HashSet<IdentifiableType>();
-        internal static HashSet<IdentifiableType> QUEEN_GASTROPODS = new HashSet<IdentifiableType>();
-        internal static HashSet<IdentifiableType> KING_GASTROPODS = new HashSet<IdentifiableType>();
-        internal static HashSet<IdentifiableType> DEFENSIVE_GASTROPODS = new HashSet<IdentifiableType>();
-
         public override void OnInitializeMelon()
         {
             ModRegistry.InjectTypes();

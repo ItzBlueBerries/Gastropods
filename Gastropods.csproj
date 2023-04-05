@@ -22,11 +22,21 @@
   <ItemGroup>
     <None Remove="Files\ABs\anims" />
     <None Remove="Files\ABs\models" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodBrine.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodPowder.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodPrimal.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodSunlight.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodToxin.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Files\ABs\anims" />
     <EmbeddedResource Include="Files\ABs\models" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodBrine.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPowder.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrimal.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodSunlight.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodToxin.png" />
   </ItemGroup>
 
   <ItemGroup>

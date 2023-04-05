@@ -17,7 +17,7 @@ namespace Gastropods
         {
             public static void Prefix(AutoSaveDirector __instance)
             {
-                foreach (IdentifiableType gastropod in GastroEntry.GASTROPODS)
+                foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
                 {
                     Get<IdentifiableTypeGroup>("VaccableNonLiquids").memberTypes.Add(gastropod);
                     Get<IdentifiableTypeGroup>("MeatGroup").memberTypes.Add(gastropod);
