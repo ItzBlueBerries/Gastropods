@@ -1,5 +1,7 @@
 # Gastropods
 
+![GastropodsV2](Files/Images/GastropodsV2.png)
+
 The snail-like creatures of Rainbow Island. Different types and food choices. Some slimes will also eat them.
 
 Creatures with personality. Adorable eyes and design.
