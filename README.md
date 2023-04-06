@@ -25,8 +25,6 @@ Here are some facts:
 
 With these facts, you should know enough about gastropods in general! But there is much more to explain.
 
-
-
 ## Where to find Gastropods
 
 Gastropods do not spawn, most of them. Gastropods are usually reproduced via **Queens** and **Kings** that spawn freely on rainbow island within their selected habitat.
@@ -64,10 +62,16 @@ With these facts, you should know enough about gastropods that spawn on their ow
 
 Here I will list the type of attackers that you may find in this mod. These are defensive gastropod abilities.
 
-- Harpoon Attacker. (Similar to the Cone Snail, they will shoot harpoons and one shot slimes until they've ran out of harpoons.)
-- Hungry Attacker. (Not similar to anything I assume, they will eat any slime that touches them until they're full.)
-
 These are the current attackers supported in the mod. Although some are only used for certain gastropod types while others may be supported by multiple types.
+
+### Harpoon Attacker
+
+Similar to the Cone Snail, they will shoot harpoons and one shot slimes until they've ran out of harpoons. After running out of harpoons (up to 3 max as of now) they'll take a little over an hour to refill them. Every 3 seconds or so they check to see if any slimes are nearby to shoot harpoons at. This is one of the most deadly defense systems as it only takes a second to get rid of a slime. There is nothing that can substitute this at the moment besides sacrificing slimes to be fed to other slimes.
+
+### Hungry Attacker
+
+Not similar to anything I assume, they will eat any slime that touches them until they're full. They'll also search for food (meat or slimes) every few hours, if there is meat nearby they will follow it until its gone.
+This of course means that if you want you can substitute meat to make the gastropods with this ability full before feeding them to other slimes.
 
 ## Type of Gastropods
 
