@@ -26,15 +26,6 @@ namespace Gastropods
             }
         }
 
-        [HarmonyPatch(typeof(AnalyticsUtil), "ReportPerIdentifiableData")]
-        public static class AnalyticsUtilReportPerIdentifiableDataPatch
-        {
-            public static bool Prefix(Il2CppSystem.Collections.Generic.IEnumerable<IdentifiableType> ids)
-            {
-                return false;
-            }
-        }
-
         [HarmonyPatch(typeof(LocalizationDirector), "LoadTables")]
         internal static class LocalizationDirectorLoadTablePatch
         {
