@@ -39,7 +39,6 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<DestroyAfterHours>();
             ClassInjector.RegisterTypeInIl2Cpp<ObjectTwirl>();
             ClassInjector.RegisterTypeInIl2Cpp<BounceActorOnCollision>();
-            ClassInjector.RegisterTypeInIl2Cpp<SlimeAttraction>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightFedVaccable>();

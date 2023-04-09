@@ -31,8 +31,7 @@ namespace Gastropods.Data.Gastropods
                 case "GameCore":
                     {
                         GastroUtility.CreateGastropod("Crepe", true, false, true, false, null, crepeGastropod, gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("crepe_shell").sharedMesh, null, CreateAccessories())
-                            .Item1.AddComponent<SlimeAttraction>();
+                            GBundle.models.LoadFromObject<MeshFilter>("crepe_shell").sharedMesh, null, CreateAccessories());
                         break;
                     }
             }
