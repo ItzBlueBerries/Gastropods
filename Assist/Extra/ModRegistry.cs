@@ -1,13 +1,13 @@
-﻿using Gastropods.Assist.Extra;
-using Gastropods.Components;
+﻿using Gastropods.Components;
+using Gastropods.Components.Attackers;
 using Gastropods.Components.FedVaccables;
 using Gastropods.Components.ReproduceOnNearbys;
 using Gastropods.Data.Gastropods;
 using HarmonyLib;
 using Il2Cpp;
 using Il2CppInterop.Runtime.Injection;
+using Il2CppSystem.Collections.Generic;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -39,6 +39,7 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<DestroyAfterHours>();
             ClassInjector.RegisterTypeInIl2Cpp<ObjectTwirl>();
             ClassInjector.RegisterTypeInIl2Cpp<BounceActorOnCollision>();
+            ClassInjector.RegisterTypeInIl2Cpp<SlimeAttraction>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightFedVaccable>();
@@ -59,6 +60,7 @@ namespace Gastropods.Assist
             Primal.Initialize();
             Powder.Initialize();
             Unidentified.Initialize();
+            Crepe.Initialize();
         }
 
         public static void LoadGastros(string sceneName)
@@ -77,6 +79,7 @@ namespace Gastropods.Assist
             Primal.Load(sceneName);
             Powder.Load(sceneName);
             Unidentified.Load(sceneName);
+            Crepe.Load(sceneName);
         }
 
         public static void LoadSpawners(string sceneName)
@@ -95,8 +98,6 @@ namespace Gastropods.Assist
 
             ModSpawner.AddToBluffs(sceneName, Get<IdentifiableType>("PowderQueenGastropod"), UnityEngine.Random.Range(0.03f, 0.05f));
             ModSpawner.AddToBluffs(sceneName, Get<IdentifiableType>("PowderKingGastropod"), UnityEngine.Random.Range(0.03f, 0.05f));
-            ModSpawner.AddToFields(sceneName, Get<IdentifiableType>("PowderQueenGastropod"), UnityEngine.Random.Range(0.003f, 0.005f));
-            ModSpawner.AddToFields(sceneName, Get<IdentifiableType>("PowderKingGastropod"), UnityEngine.Random.Range(0.003f, 0.005f));
             #endregion
 
             #region WITHOUT_KINGS_AND_QUEENS
@@ -108,6 +109,8 @@ namespace Gastropods.Assist
             ModSpawner.AddToStrand(sceneName, Get<IdentifiableType>("UnidentifiedGastropod"), 0.0025f);
             ModSpawner.AddToGorge(sceneName, Get<IdentifiableType>("UnidentifiedGastropod"), 0.0025f);
             ModSpawner.AddToBluffs(sceneName, Get<IdentifiableType>("UnidentifiedGastropod"), 0.0025f);
+
+            ModSpawner.AddToStrand(sceneName, Get<IdentifiableType>("CrepeGastropod"), UnityEngine.Random.Range(0.08f, 0.09f));
             #endregion
         }
 
@@ -117,6 +120,40 @@ namespace Gastropods.Assist
             {
                 ModFears.AddToAllProfiles(defensiveGastropod, 15, 9);
                 ModFears.RemoveFromProfile(defensiveGastropod, Get<GameObject>("slimeAngler"));
+            }
+        }
+
+        public static void LoadEatMaps()
+        {
+            foreach (IdentifiableType identifiableType in Get<IdentifiableTypeGroup>("BaseSlimeGroup").memberTypes)
+            {
+                SlimeDefinition slimeDefinition = identifiableType.Cast<SlimeDefinition>();
+                if (slimeDefinition == null)
+                    continue;
+
+                if (slimeDefinition.Diet == null)
+                    continue;
+
+                foreach (IdentifiableType produceIdent in slimeDefinition.Diet.ProduceIdents)
+                {
+                    if (produceIdent == null)
+                        continue;
+
+                    foreach (SlimeDiet.EatMapEntry eatMapEntry in slimeDefinition.Diet.EatMap)
+                    {
+                        if (eatMapEntry.eatsIdent == Get<IdentifiableType>("CrepeGastropod"))
+                            slimeDefinition.Diet.EatMap.Remove(eatMapEntry);
+                    }
+
+                    slimeDefinition.Diet.EatMap.Add(new SlimeDiet.EatMapEntry()
+                    {
+                        isFavorite = true,
+                        producesIdent = produceIdent,
+                        eatsIdent = Get<IdentifiableType>("CrepeGastropod"),
+                        favoriteProductionCount = 6,
+                        minDrive = 1
+                    });
+                }
             }
         }
     }

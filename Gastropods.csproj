@@ -18,6 +18,7 @@
     <Compile Remove="Components\Archived\ConfidantController.cs" />
     <Compile Remove="Components\Archived\GastropodRandomMove.cs" />
     <Compile Remove="Components\Archived\ShellRetreat.cs" />
+    <Compile Remove="Components\Archived\SlimeAttraction.cs" />
     <Compile Remove="Components\CompanionController.cs" />
     <Compile Remove="Components\ConfidantAttack.cs" />
     <Compile Remove="Components\ConfidantController.cs" />
@@ -54,6 +55,7 @@
     <ApplicationDefinition Include="Components\Archived\ConfidantController.cs" />
     <ApplicationDefinition Include="Components\Archived\ShellRetreat.cs" />
     <None Include="Components\Archived\ShellRetreat.cs" />
+    <None Include="Components\Archived\SlimeAttraction.cs" />
     <None Include="Data\Archived\Confidants\Fish.cs" />
     <ApplicationDefinition Include="Components\Archived\CompanionController.cs" />
   </ItemGroup>

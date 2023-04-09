@@ -6,14 +6,14 @@ using MelonLoader;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using System.Collections;
+using System.Linq;
 
-#nullable disable
 namespace Gastropods
 {
     internal class HarmonyPatches
     {
         [HarmonyPatch(typeof(AutoSaveDirector), "Awake")]
-        public static class PatchAutoSaveDirectorAwake
+        internal static class PatchAutoSaveDirectorAwake
         {
             public static void Prefix(AutoSaveDirector __instance)
             {
@@ -23,15 +23,6 @@ namespace Gastropods
                     Get<IdentifiableTypeGroup>("MeatGroup").memberTypes.Add(gastropod);
                     __instance.identifiableTypes.memberTypes.Add(gastropod);
                 }
-            }
-        }
-
-        [HarmonyPatch(typeof(AnalyticsUtil), "ReportPerIdentifiableData")]
-        public static class AnalyticsUtilReportPerIdentifiableDataPatch
-        {
-            public static bool Prefix(Il2CppSystem.Collections.Generic.IEnumerable<IdentifiableType> ids)
-            {
-                return false;
             }
         }
 
@@ -77,5 +68,31 @@ namespace Gastropods
             public static System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, string>> addedTranslations = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, string>>();
         }
     }
+
+    internal class OtherHarmonyPatches
+    {
+        [HarmonyPatch(typeof(SlimeEat), "EatAndProduce")]
+        internal class PatchSlimeEatProduce
+        {
+            private static bool Prefix(SlimeEat __instance, SlimeDiet.EatMapEntry em)
+            {
+                foreach (IdentifiableType definition in Get<IdentifiableTypeGroup>("BaseSlimeGroup").memberTypes)
+                {
+                    SlimeDefinition slimeDefinition = definition.Cast<SlimeDefinition>();
+                    if (slimeDefinition == null || slimeDefinition.Diet == null)
+                        continue;
+                    if (__instance.slimeDefinition == slimeDefinition)
+                    {
+                        if (em.eatsIdent == Get<IdentifiableType>("CrepeGastropod"))
+                        {
+                            em.isFavorite = true;
+                            em.favoriteProductionCount = 6;
+                        }
+                    }
+                }
+
+                return true;
+            }
+        }
+    }
 }
-#nullable restore

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Localization.PropertyVariants.TrackedProperties;
 
-namespace Gastropods.Components
+namespace Gastropods.Components.Attackers
 {
     internal class HungryAttacker : MonoBehaviour
     {

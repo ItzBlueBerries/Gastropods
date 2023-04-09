@@ -1,5 +1,6 @@
 ﻿using Gastropods.Assist;
 using Gastropods.Components;
+using Gastropods.Components.Attackers;
 using Gastropods.Components.FedVaccables;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
