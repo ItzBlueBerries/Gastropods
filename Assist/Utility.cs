@@ -33,6 +33,11 @@ internal class Utility
             internal static HashSet<IdentifiableType> RARE_ITEMS = new HashSet<IdentifiableType>();
         }
 
+        public static class Pedia
+        {
+            internal static HashSet<PediaEntry> GASTROPOD_ENTRIES = new HashSet<PediaEntry>();
+        }
+
         internal static HashSet<IdentifiableType> GASTROPODS = new HashSet<IdentifiableType>();
         internal static HashSet<IdentifiableType> QUEEN_GASTROPODS = new HashSet<IdentifiableType>();
         internal static HashSet<IdentifiableType> KING_GASTROPODS = new HashSet<IdentifiableType>();

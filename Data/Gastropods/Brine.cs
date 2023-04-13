@@ -3,6 +3,7 @@ using Gastropods.Components.FedVaccables;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;

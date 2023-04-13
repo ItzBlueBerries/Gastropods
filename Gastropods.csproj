@@ -29,6 +29,8 @@
   <ItemGroup>
     <None Remove="Files\ABs\anims" />
     <None Remove="Files\ABs\models" />
+    <None Remove="Files\Icons\Categories\iconCategoryGastropods.png" />
+    <None Remove="Files\Icons\Categories\iconCategoryGastropodsToxin.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodBrine.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodPowder.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodPrimal.png" />
@@ -39,6 +41,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Files\ABs\anims" />
     <EmbeddedResource Include="Files\ABs\models" />
+    <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropods.png" />
+    <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropodsToxin.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodBrine.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPowder.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrimal.png" />

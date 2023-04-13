@@ -44,6 +44,10 @@ namespace Gastropods
                 //Here you have loaded SceneContext
                 case "zoneCore":
                     {
+                        HarmonyPatches.PatchPediaDirector.AddSlimepedia(Get<IdentifiableType>("Gold"), "GoldSlimee", "GOLDIE, SPLATOON 3", "YEAH YEAH YEAH", "EEEE", "MMMMM", true);
+                        HarmonyPatches.PatchPediaDirector.AddSlimepediaPage("GoldSlimee", 2);
+                        HarmonyPatches.PatchPediaDirector.AddSlimepediaPage("GoldSlimee", 2, isRisks: true);
+                        HarmonyPatches.PatchPediaDirector.AddSlimepediaPage("GoldSlimee", 2, isPlortonomics: true);
                         break;
                     }
             }

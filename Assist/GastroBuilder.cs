@@ -184,23 +184,38 @@ namespace Gastropods.Assist
 
     public static class GastroUtility
     {
+        public static PediaEntry CreatePediaEntry(IdentifiableType gastroType, string pediaTitle, string pediaIntro, string pediaDescription, string pediaHowToUse)
+        {
+            PediaEntry entry = HarmonyPatches.PatchPediaDirector.AddIdentifiablePedia(gastroType, "Gastropods", pediaTitle, pediaIntro, pediaDescription, pediaHowToUse, true);
+            Gastro.Pedia.GASTROPOD_ENTRIES.Add(entry);
+            return entry;
+        }
+
         public static IdentifiableType CreateIdentifiable(string gastroType, bool isQueen, bool isKing, Color gastroColor)
         {
             IdentifiableType gastroIdent = ScriptableObject.CreateInstance<IdentifiableType>();
             gastroIdent.hideFlags |= HideFlags.HideAndDontSave;
-            if (isQueen)
+
+            if (isQueen && !isKing)
                 gastroIdent.name = gastroType + "QueenGastropod";
             else if (isKing && !isQueen)
                 gastroIdent.name = gastroType + "KingGastropod";
             else
                 gastroIdent.name = gastroType + "Gastropod";
+
+            if (isQueen && !isKing)
+                gastroIdent.localizationSuffix = gastroType.ToLower() + "_queen_gastropod";
+            else if (isKing && !isQueen)
+                gastroIdent.localizationSuffix = gastroType.ToLower() + "_king_gastropod";
+            else
+                gastroIdent.localizationSuffix = gastroType.ToLower() + "_gastropod";
+
             gastroIdent.IsAnimal = true;
-            gastroIdent.foodGroup = Get<IdentifiableTypeGroup>("MeatGroup");
             gastroIdent.color = gastroColor;
 
             Gastro.GASTROPODS.Add(gastroIdent);
 
-            if (isQueen)
+            if (isQueen && !isKing)
                 Gastro.QUEEN_GASTROPODS.Add(gastroIdent);
             else if (isKing && !isQueen)
                 Gastro.KING_GASTROPODS.Add(gastroIdent);

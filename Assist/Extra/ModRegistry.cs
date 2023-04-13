@@ -6,12 +6,6 @@ using Gastropods.Data.Gastropods;
 using HarmonyLib;
 using Il2Cpp;
 using Il2CppInterop.Runtime.Injection;
-using Il2CppSystem.Collections.Generic;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gastropods.Assist
 {
@@ -122,38 +116,15 @@ namespace Gastropods.Assist
             }
         }
 
-        public static void LoadEatMaps()
+        public static void LoadPedias()
         {
-            foreach (IdentifiableType identifiableType in Get<IdentifiableTypeGroup>("BaseSlimeGroup").memberTypes)
-            {
-                SlimeDefinition slimeDefinition = identifiableType.Cast<SlimeDefinition>();
-                if (slimeDefinition == null)
-                    continue;
+            // BRINE
+            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("BrineGastropod"), "Brine", "Based on the sea?", "This is a test pedia for now.", "Reproduce with king & queen.");
+            HarmonyPatches.PatchPediaDirector.AddIdentifiablePage("Brine", 2);
+            HarmonyPatches.PatchPediaDirector.AddIdentifiablePage("Brine", 2, isHowToUse: true);
 
-                if (slimeDefinition.Diet == null)
-                    continue;
-
-                foreach (IdentifiableType produceIdent in slimeDefinition.Diet.ProduceIdents)
-                {
-                    if (produceIdent == null)
-                        continue;
-
-                    foreach (SlimeDiet.EatMapEntry eatMapEntry in slimeDefinition.Diet.EatMap)
-                    {
-                        if (eatMapEntry.eatsIdent == Get<IdentifiableType>("CrepeGastropod"))
-                            slimeDefinition.Diet.EatMap.Remove(eatMapEntry);
-                    }
-
-                    slimeDefinition.Diet.EatMap.Add(new SlimeDiet.EatMapEntry()
-                    {
-                        isFavorite = true,
-                        producesIdent = produceIdent,
-                        eatsIdent = Get<IdentifiableType>("CrepeGastropod"),
-                        favoriteProductionCount = 6,
-                        minDrive = 1
-                    });
-                }
-            }
+            HarmonyPatches.PatchPediaDirector.AddTutorialPedia("HowToDotDotDot", Get<Sprite>("iconSlimeAngler"), "How To ...", "Read the instructions.", "<b>Say ... in discord chat. :]</b>");
+            HarmonyPatches.PatchPediaDirector.AddTutorialPage("HowToDotDotDot", 2, "<b>Then say . . .\r\n. . . . . .\r\n. . . . . . . . .\r\n. . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . \r\n. . . . . . . . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . . . . . . . \r\n. . . . . . . . . . . . . . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . . . . . . . \r\n. . . . . . . . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . \r\n. . . . . . . . . . . .\r\n. . . . . . . . .\r\n. . . . . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . . . . .\r\n. . . . . .</b>");
         }
     }
 }

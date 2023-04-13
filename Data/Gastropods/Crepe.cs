@@ -18,11 +18,7 @@ namespace Gastropods.Data.Gastropods
         private static Color[] gastroPalette = new Color[] { LoadHex("#ffd886"), LoadHex("#eba30f"), Color.white };
         private static Color[] gastroShellPalette = new Color[] { Color.white, LoadHex("#eba30f"), LoadHex("#ffd886") };
 
-        public static void Initialize()
-        {
-            crepeGastropod = GastroUtility.CreateIdentifiable("Crepe", false, false, LoadHex("#ffd886"));
-            Gastro.DO_SOMETHING_GASTROPODS.Add(crepeGastropod);
-        }
+        public static void Initialize() => crepeGastropod = GastroUtility.CreateIdentifiable("Crepe", false, false, LoadHex("#ffd886"));
 
         public static void Load(string sceneName)
         {
