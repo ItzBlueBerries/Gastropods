@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Components
 {
@@ -16,6 +15,7 @@ namespace Gastropods.Components
             {
                 SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().TransformFX, transform.position, transform.rotation);
                 SRBehaviour.InstantiateActor(actor, SRSingleton<SceneContext>.Instance.RegionRegistry.CurrentSceneGroup, transform.position, transform.rotation);
+                SceneContext.Instance.PediaDirector.MaybeShowPopup(Get<IdentifiableType>("UnidentifiedGastropod"));
                 Destroyer.DestroyActor(gameObject, "UnidentifiedProduce.ProduceRareItem.SpawnActorAndDestroy");
             }
 

@@ -10,6 +10,9 @@
     <PackageProjectUrl></PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ItzBlueBerries/Gastropods</RepositoryUrl>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +39,10 @@
     <None Remove="Files\Icons\Gastropods\iconGastropodPrimal.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodSunlight.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodToxin.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodUnidentified.png" />
+    <None Remove="Files\Icons\Tutorials\iconTutorialDefensivePlusAttackers.png" />
+    <None Remove="Files\Icons\Tutorials\iconTutorialReproduceGastropod.png" />
+    <None Remove="Files\Icons\Tutorials\iconTutorialStubbornGastropod.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +55,10 @@
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrimal.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodSunlight.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodToxin.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodUnidentified.png" />
+    <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialDefensivePlusAttackers.png" />
+    <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialReproduceGastropod.png" />
+    <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialStubbornGastropod.png" />
   </ItemGroup>
 
   <ItemGroup>

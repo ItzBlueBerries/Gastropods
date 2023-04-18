@@ -36,6 +36,7 @@ internal class Utility
         public static class Pedia
         {
             internal static HashSet<PediaEntry> GASTROPOD_ENTRIES = new HashSet<PediaEntry>();
+            internal static HashSet<PediaEntry> TUTORIALS = new HashSet<PediaEntry>();
         }
 
         internal static HashSet<IdentifiableType> GASTROPODS = new HashSet<IdentifiableType>();

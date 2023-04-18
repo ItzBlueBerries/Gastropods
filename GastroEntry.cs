@@ -6,8 +6,9 @@ using Gastropods.Components;
 using Il2Cpp;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(GastroEntry), "Gastropods", "1.0.1", "FruitsyOG")]
+[assembly: MelonInfo(typeof(GastroEntry), "Gastropods", "1.1.0", "FruitsyOG")]
 [assembly: MelonGame("MonomiPark", "SlimeRancher2")]
+[assembly: MelonColor(0, 0, 170, 255)]
 namespace Gastropods
 {
     internal class GastroEntry : MelonMod
@@ -44,10 +45,6 @@ namespace Gastropods
                 //Here you have loaded SceneContext
                 case "zoneCore":
                     {
-                        HarmonyPatches.PatchPediaDirector.AddSlimepedia(Get<IdentifiableType>("Gold"), "GoldSlimee", "GOLDIE, SPLATOON 3", "YEAH YEAH YEAH", "EEEE", "MMMMM", true);
-                        HarmonyPatches.PatchPediaDirector.AddSlimepediaPage("GoldSlimee", 2);
-                        HarmonyPatches.PatchPediaDirector.AddSlimepediaPage("GoldSlimee", 2, isRisks: true);
-                        HarmonyPatches.PatchPediaDirector.AddSlimepediaPage("GoldSlimee", 2, isPlortonomics: true);
                         break;
                     }
             }

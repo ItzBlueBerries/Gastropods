@@ -1,4 +1,5 @@
 ﻿using Gastropods.Components;
+using HarmonyLib;
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.Regions;
 using MelonLoader;
@@ -9,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.Localization;
 
 namespace Gastropods.Assist
 {
@@ -184,9 +186,9 @@ namespace Gastropods.Assist
 
     public static class GastroUtility
     {
-        public static PediaEntry CreatePediaEntry(IdentifiableType gastroType, string pediaTitle, string pediaIntro, string pediaDescription, string pediaHowToUse)
+        public static PediaEntry CreatePediaEntry(IdentifiableType gastroType, string pediaEntryName, string pediaIntro, string pediaDescription, string pediaHowToUse)
         {
-            PediaEntry entry = HarmonyPatches.PatchPediaDirector.AddIdentifiablePedia(gastroType, "Gastropods", pediaTitle, pediaIntro, pediaDescription, pediaHowToUse, true);
+            PediaEntry entry = HarmonyPatches.PatchPediaDirector.AddIdentifiablePedia(gastroType, "Gastropods", pediaEntryName, pediaIntro, pediaDescription, pediaHowToUse, true);
             Gastro.Pedia.GASTROPOD_ENTRIES.Add(entry);
             return entry;
         }

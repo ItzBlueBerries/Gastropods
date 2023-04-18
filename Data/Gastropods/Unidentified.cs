@@ -33,7 +33,8 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        unidentifiedPrefab = GastroUtility.CreateGastropod("Unidentified", false, true, false, false, null, unidentifiedGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories());
+                        unidentifiedPrefab = GastroUtility.CreateGastropod("Unidentified", false, true, false, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodUnidentified")), 
+                            unidentifiedGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories());
                         UnityEngine.Object.Destroy(unidentifiedPrefab.Item1.GetComponent<Vacuumable>());
                         unidentifiedPrefab.Item1.AddComponent<UnidentifiedTransform>();
                         unidentifiedPrefab.Item1.AddComponent<RandomRigidMovement>();
