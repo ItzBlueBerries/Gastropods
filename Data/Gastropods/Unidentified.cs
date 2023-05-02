@@ -1,7 +1,6 @@
 ﻿using Gastropods.Assist;
 using Gastropods.Components;
-using Gastropods.Components.FedVaccables;
-using Gastropods.Components.ReproduceOnNearbys;
+using Gastropods.Components.Behaviours;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
 using System;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Data.Gastropods
 {
@@ -21,9 +21,7 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            unidentifiedGastropod = GastroUtility.CreateIdentifiable("Unidentified", false, false, Color.white);
-            Gastro.RARE_GASTROPODS.Add(unidentifiedGastropod);
-            Gastro.DEFENSIVE_GASTROPODS.Add(unidentifiedGastropod);
+            unidentifiedGastropod = GastroUtility.CreateIdentifiable("Unidentified", false, false, true, true, Color.white);
             Gastro.DO_SOMETHING_GASTROPODS.Add(unidentifiedGastropod);
         }
 
@@ -44,6 +42,37 @@ namespace Gastropods.Data.Gastropods
                         break;
                     }
             }
+        }
+
+        public static void CreatePedia()
+        {
+            GastroUtility.CreatePediaEntry(unidentifiedGastropod, "Unidentified",
+                "Was that a hard catch?",
+
+                "Unidentified Gastropods are one of the <b>sixth gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
+                "These gastropods are considered rare and have rare abilities that other gastropods do not have. " +
+                "It moves a lot more than other gastropods making it hard to catch! Try to get it before it bounces away.. " +
+                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
+
+                "This gastropod type cannot reproduce and has to be found spawning on its own.\n" +
+                "This means it is incapable of being mass produced, have fun trying to find and catch this type of gastropod!"
+            );
+            PatchPediaDirector.AddIdentifiablePage("Unidentified", 2,
+                "Unidentified has rare abilities which are going to be explained here.\n" +
+                "You cannot store this gastropod in your vacpack nor keep it for long. Although if you catch it by feeding it a craft, you'll get a reward in return.\n" +
+                "While this may sound good, they move around a lot and do a lot of bouncing that can make it harder. Another thing is that they'll disappear after a little over an hour. " +
+                "Including that when other things collide with it, they will be bounced away. This includes slimes, resources and all of the above that identify as actors.\n" +
+                "What is the reward you may ask? Well the reward can either be a rare item (including moondew nectar) or a rare slime (such as gold or lucky)."
+            );
+            PatchPediaDirector.AddIdentifiablePage("Unidentified", 3,
+                "This gastropod is unknown of having a confidant or not. The things that circle around it are presumed to be confidants although this cannot be confirmed to be true.\n" +
+                "They could also be the cause of bouncing back other things that collide with the gastropod."
+            );
+            PatchPediaDirector.AddIdentifiablePage("Unidentified", 4,
+                "This is a type of gastropod that doesn't have kings & queens.\n" +
+                "They do spawn on their own and require to be found. They cannot reproduce whatsoever.\n" +
+                "This gastropod type specifically spawns everywhere."
+            );
         }
 
         private static GameObject[] CreateAccessories()

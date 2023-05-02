@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Gastropods.Components.Attackers
 {
@@ -96,7 +95,7 @@ namespace Gastropods.Components.Attackers
             prefab.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("confidant_harpoon").sharedMesh;
             prefab.AddComponent<MeshRenderer>().sharedMaterial = harpoonMaterial;
             prefab.AddComponent<BoxCollider>();
-            prefab.AddComponent<HarpoonKillOnTouch>();
+            prefab.AddComponent<KillSlimeOnTouch>();
 
             return prefab;
         }

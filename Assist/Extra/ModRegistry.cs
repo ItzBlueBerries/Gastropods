@@ -1,7 +1,10 @@
 ﻿using Gastropods.Components;
 using Gastropods.Components.Attackers;
+using Gastropods.Components.Behaviours;
 using Gastropods.Components.FedVaccables;
+using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
+using Gastropods.Components.Resource;
 using Gastropods.Data.Gastropods;
 using HarmonyLib;
 using Il2Cpp;
@@ -19,21 +22,34 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<GastropodRandomMoveV3>();
             ClassInjector.RegisterTypeInIl2Cpp<CompanionController>();
             ClassInjector.RegisterTypeInIl2Cpp<ConfidantController>();
-            ClassInjector.RegisterTypeInIl2Cpp<ConfidantAttack>();*/
+            ClassInjector.RegisterTypeInIl2Cpp<ConfidantAttack>();
+            ClassInjector.RegisterTypeInIl2Cpp<GastropodType>();
+            ClassInjector.RegisterTypeInIl2Cpp<DamagePlayerOnTouch>();
+            ClassInjector.RegisterTypeInIl2Cpp<DamageSlimeOnTouch>();*/
+
+            ClassInjector.RegisterTypeInIl2Cpp<GastroBehaviour>();
+            ClassInjector.RegisterTypeInIl2Cpp<EatenBehaviour>();
+
+            ClassInjector.RegisterTypeInIl2Cpp<HarpoonAttacker>();
+            // ClassInjector.RegisterTypeInIl2Cpp<HarpoonAttackerV2>();
+            ClassInjector.RegisterTypeInIl2Cpp<HungryAttacker>();
+            ClassInjector.RegisterTypeInIl2Cpp<SpineAttacker>();
+
+            ClassInjector.RegisterTypeInIl2Cpp<JuicyProduction>();
 
             ClassInjector.RegisterTypeInIl2Cpp<GotoSuperior>();
             ClassInjector.RegisterTypeInIl2Cpp<FedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<ReproduceOnNearby>();
             ClassInjector.RegisterTypeInIl2Cpp<LazyVaccable>();
-            ClassInjector.RegisterTypeInIl2Cpp<HarpoonAttacker>();
-            ClassInjector.RegisterTypeInIl2Cpp<HarpoonKillOnTouch>();
-            ClassInjector.RegisterTypeInIl2Cpp<HungryAttacker>();
+            ClassInjector.RegisterTypeInIl2Cpp<KillSlimeOnTouch>();
             ClassInjector.RegisterTypeInIl2Cpp<ObjectRotation>();
             ClassInjector.RegisterTypeInIl2Cpp<UnidentifiedTransform>();
             ClassInjector.RegisterTypeInIl2Cpp<RandomRigidMovement>();
             ClassInjector.RegisterTypeInIl2Cpp<DestroyAfterHours>();
             ClassInjector.RegisterTypeInIl2Cpp<ObjectTwirl>();
             ClassInjector.RegisterTypeInIl2Cpp<BounceActorOnCollision>();
+            ClassInjector.RegisterTypeInIl2Cpp<PopupBase>();
+            ClassInjector.RegisterTypeInIl2Cpp<VaccedPopup>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightFedVaccable>();
@@ -44,6 +60,11 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<SunlightReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<PrimalReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<PowderReproduce>();
+
+            ClassInjector.RegisterTypeInIl2Cpp<BrineVaccedPopup>();
+            ClassInjector.RegisterTypeInIl2Cpp<SunlightVaccedPopup>();
+            ClassInjector.RegisterTypeInIl2Cpp<PrimalVaccedPopup>();
+            ClassInjector.RegisterTypeInIl2Cpp<PowderVaccedPopup>();
         }
 
         public static void InitializeGastros()
@@ -55,6 +76,7 @@ namespace Gastropods.Assist
             Powder.Initialize();
             Unidentified.Initialize();
             Crepe.Initialize();
+            Prickly.Initialize();
         }
 
         public static void LoadGastros(string sceneName)
@@ -74,6 +96,7 @@ namespace Gastropods.Assist
             Powder.Load(sceneName);
             Unidentified.Load(sceneName);
             Crepe.Load(sceneName);
+            Prickly.Load(sceneName);
         }
 
         public static void LoadSpawners(string sceneName)
@@ -105,6 +128,10 @@ namespace Gastropods.Assist
             ModSpawner.AddToBluffs(sceneName, Get<IdentifiableType>("UnidentifiedGastropod"), 0.0025f);
 
             ModSpawner.AddToStrand(sceneName, Get<IdentifiableType>("CrepeGastropod"), UnityEngine.Random.Range(0.08f, 0.09f));
+
+            ModSpawner.AddToStrand(sceneName, Get<IdentifiableType>("PricklyGastropod"), UnityEngine.Random.Range(0.08f, 0.09f));
+            ModSpawner.AddToGorge(sceneName, Get<IdentifiableType>("PricklyGastropod"), UnityEngine.Random.Range(0.05f, 0.08f));
+            ModSpawner.AddToBluffs(sceneName, Get<IdentifiableType>("PricklyGastropod"), UnityEngine.Random.Range(0.05f, 0.08f));
             #endregion
         }
 
@@ -194,159 +221,25 @@ namespace Gastropods.Assist
             #endregion
             #endregion
 
-            #region GASTROPOD_PEDIAS
-            #region BRINE
-            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("BrineGastropod"), "Brine",
-                "Sea Stars, Fishies and Snails! All in one.",
+            Brine.CreatePedia();
+            Sunlight.CreatePedia();
+            Toxin.CreatePedia();
+            Primal.CreatePedia();
+            Powder.CreatePedia();
+            Unidentified.CreatePedia();
 
-                "Brine Gastropods are one of the <b>first gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
-                "Being raised by their superior gastropods, they will follow them around if they so choose like almost any other gastropod. " +
-                "Although being cute and adorable, they're a type of food that is given to the slimes you ranch! So I guess that's a bit of a choice there. " +
-                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
-
-                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
-                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
-                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
-                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Brine", 2,
-                "Another part of the Brine Gastropod is their confidant. Brine has a confidant who is a Fish.\n" +
-                "This confidant protects them from potential threats when they can. " +
-                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround."
-            );
-            PatchPediaDirector.AddIdentifiablePage("Brine", 3, 
-                "This is a type of gastropod that'll have kings & queens.\n" +
-                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
-                "This gastropod type specifically spawns in the Rainbow Fields. Occasionally in the Pink Canyon. (Where Angler slimes spawn)"
-            );
-            #endregion
-            #region SUNLIGHT
-            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("SunlightGastropod"), "Sunlight",
-                "Rise and shine! Sunlight is ready to satisfy your eyes.",
-
-                "Sunlight Gastropods are one of the <b>second gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
-                "You'll see blocks of sun sap embedded into their shell as a sign of.. well sun sap. " +
-                "They look their best when the sun is out and is rather nice to others. This snail really knows how to show off! " +
-                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
-
-                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
-                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
-                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
-                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Sunlight", 2,
-                "Another part of the Sunlight Gastropod is their confidant. Sunlight has a confidant who is a Sun.\n" +
-                "This confidant protects them from potential threats when they can. " +
-                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround."
-            );
-            PatchPediaDirector.AddIdentifiablePage("Sunlight", 3,
-                "This is a type of gastropod that'll have kings & queens.\n" +
-                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
-                "This gastropod type specifically spawns in the Starlight Strand."
-            );
-            #endregion
-            #region TOXIN
-            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("ToxinGastropod"), "Toxin",
-                "That look in its eyes.. contaminating the area. How wonderful.",
-
-                "Toxin Gastropods are one of the <b>third gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
-                "This specific type of gastropod is defensive but will not hurt you. " +
-                "They'll one-shot slimes with their harpoons if they get too close. This could be an issue when feeding them to other slimes. " +
-                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
-
-                "This gastropod type cannot reproduce and has to be found spawning on its own.\n" +
-                "This means it is incapable of being mass produced, have fun saving them up!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Toxin", 2,
-                "Toxin does not have a confidant. You could say their confidant is their harpoon though if you'd like!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Toxin", 3,
-                "This is a type of gastropod that doesn't have kings & queens.\n" +
-                "They do spawn on their own and require to be found. They cannot reproduce whatsoever.\n" +
-                "This gastropod type specifically spawns everywhere but Powderfall Bluffs."
-            );
-            #endregion
-            #region PRIMAL
-            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("PrimalGastropod"), "Primal",
-                "You've got something stuck in your teeth there bud- Oh its just a piece of meat.",
-
-                "Primal Gastropods are one of the <b>fourth gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
-                "This specific type of gastropod is defensive but will not hurt you. " +
-                "They'll feast on slimes or meat (excluding gastropods) that collide with them, they may also follow one nearby every now and then. " +
-                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
-
-                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
-                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
-                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
-                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Primal", 2,
-                "Another part of the Primal Gastropod is their confidant. Primal has a confidant who is a Snake.\n" +
-                "This confidant protects them from potential threats when they can. " +
-                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround."
-            );
-            PatchPediaDirector.AddIdentifiablePage("Primal", 3,
-                "This is a type of gastropod that'll have kings & queens.\n" +
-                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
-                "This gastropod type specifically spawns in the Ember Valley."
-            );
-            #endregion
-            #region POWDER
-            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("PowderGastropod"), "Powder",
-                "I wonder if they can summon snowstorms.",
-
-                "Powder Gastropods are one of the <b>fifth gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
-                "Their shell is like a tower of snow with a little snowball on top! " +
-                "When its day vs. night, you may see a slight change in their shell color due to the shading. This could be a cool fact? " +
-                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
-
-                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
-                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
-                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
-                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Powder", 2,
-                "Another part of the Powder Gastropod is their confidant. Powder has a confidant who is a Snowball.\n" +
-                "This confidant protects them from potential threats when they can. " +
-                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround.\n" +
-                "It is also known that their superiors do not have more than one confidant. They all share the same number of confidants."
-            );
-            PatchPediaDirector.AddIdentifiablePage("Powder", 3,
-                "This is a type of gastropod that'll have kings & queens.\n" +
-                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
-                "This gastropod type specifically spawns in the Powderfall Bluffs."
-            );
-            #endregion
-            #region UNIDENTIFIED
-            GastroUtility.CreatePediaEntry(Get<IdentifiableType>("UnidentifiedGastropod"), "Unidentified",
-                "Was that a hard catch?",
-
-                "Unidentified Gastropods are one of the <b>sixth gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
-                "These gastropods are considered rare and have rare abilities that other gastropods do not have. " +
-                "It moves a lot more than other gastropods making it hard to catch! Try to get it before it bounces away.. " +
-                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
-
-                "This gastropod type cannot reproduce and has to be found spawning on its own.\n" +
-                "This means it is incapable of being mass produced, have fun trying to find and catch this type of gastropod!"
-            );
-            PatchPediaDirector.AddIdentifiablePage("Unidentified", 2,
-                "Unidentified has rare abilities which are going to be explained here.\n" +
-                "You cannot store this gastropod in your vacpack nor keep it for long. Although if you catch it by feeding it a craft, you'll get a reward in return.\n" +
-                "While this may sound good, they move around a lot and do a lot of bouncing that can make it harder. " +
-                "Including that when other things collide with it, they will be bounced away. This includes slimes, resources and all of the above that identify as actors.\n" +
-                "What is the reward you may ask? Well the reward can either be a rare item (including moondew nectar) or a rare slime (such as gold or lucky)."
-            );
-            PatchPediaDirector.AddIdentifiablePage("Unidentified", 3,
-                "This gastropod is unknown of having a confidant or not. The things that circle around it are presumed to be confidants although this cannot be confirmed to be true.\n" +
-                "They could also be the cause of bouncing back other things that collide with the gastropod."
-            );
-            PatchPediaDirector.AddIdentifiablePage("Unidentified", 4,
-                "This is a type of gastropod that doesn't have kings & queens.\n" +
-                "They do spawn on their own and require to be found. They cannot reproduce whatsoever.\n" +
-                "This gastropod type specifically spawns everywhere."
-            );
-            #endregion
-            #endregion
+            //#region SUPERIOR_GASTROPOD_PEDIAS
+            //foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
+            //{
+            //    if (Gastro.IsQueenGastropod(gastropod) || Gastro.IsKingGastropod(gastropod))
+            //    {
+            //        IdentifiablePediaEntry identifiablePediaEntry = PatchPediaDirector.CreateIdentifiableEntry(gastropod, gastropod.name.Replace("Gastropod", ""), Get<PediaTemplate>("HighlightedResourcePediaTemplate"),
+            //            gastropod.localizedName, LocalizationDirectorLoadTablePatch.AddTranslation("Pedia", "m.intro." + gastropod.localizationSuffix, "A superior gastropod."),
+            //            Get<IdentifiablePediaEntry>("Pink").actionButtonLabel, Get<IdentifiablePediaEntry>("Pink").infoButtonLabel, true);
+            //        PatchPediaDirector.addedPedias.Add(identifiablePediaEntry);
+            //    }
+            //}
+            //#endregion
 
             /*HarmonyPatches.PatchPediaDirector.AddTutorialPedia("HowToDotDotDot", Get<Sprite>("iconSlimeAngler"), "How To ...", "Read the instructions.", "<b>Say ... in discord chat. :]</b>");
             HarmonyPatches.PatchPediaDirector.AddTutorialPage("HowToDotDotDot", 2, "<b>Then say . . .\r\n. . . . . .\r\n. . . . . . . . .\r\n. . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . \r\n. . . . . . . . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . . . . . . . \r\n. . . . . . . . . . . . . . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . . . . . . . \r\n. . . . . . . . . . . . . . . . . .\r\n. . . . . . . . . . . . . . . \r\n. . . . . . . . . . . .\r\n. . . . . . . . .\r\n. . . . . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . .\r\n. . . . . .\r\n. . . . . .</b>");*/

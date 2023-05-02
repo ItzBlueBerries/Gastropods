@@ -1,6 +1,7 @@
 ﻿using Gastropods.Assist;
 using Gastropods.Components;
 using Gastropods.Components.FedVaccables;
+using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Data.Gastropods
 {
@@ -24,9 +26,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            powderGastropod = GastroUtility.CreateIdentifiable("Powder", false, false, Color.white);
-            powderQueenGastropod = GastroUtility.CreateIdentifiable("Powder", true, false, Color.white);
-            powderKingGastropod = GastroUtility.CreateIdentifiable("Powder", false, true, Color.white);
+            powderGastropod = GastroUtility.CreateIdentifiable("Powder", false, false, false, false, Color.white);
+            powderQueenGastropod = GastroUtility.CreateIdentifiable("Powder", true, false, false, false, Color.white);
+            powderKingGastropod = GastroUtility.CreateIdentifiable("Powder", false, true, false, false, Color.white);
         }
 
         public static void Load(string sceneName)
@@ -36,14 +38,42 @@ namespace Gastropods.Data.Gastropods
                 case "GameCore":
                     {
                         GastroUtility.CreateGastropod("Powder", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodPowder")), powderGastropod, gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false));
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false)).Item1.AddComponent<PowderVaccedPopup>();
                         GastroUtility.CreateQueenGastropod("Powder", false, true, false, null, powderQueenGastropod, Il2CppType.Of<PowderFedVaccable>(), Il2CppType.Of<PowderReproduce>(), gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<PowderVaccedPopup>();
                         GastroUtility.CreateKingGastropod("Powder", false, true, false, null, powderKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<PowderVaccedPopup>();
                         break;
                     }
             }
+        }
+
+        public static void CreatePedia()
+        {
+            GastroUtility.CreatePediaEntry(powderGastropod, "Powder",
+                "I wonder if they can summon snowstorms.",
+
+                "Powder Gastropods are one of the <b>fifth gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
+                "Their shell is like a tower of snow with a little snowball on top! " +
+                "When its day vs. night, you may see a slight change in their shell color due to the shading. This could be a cool fact? " +
+                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
+
+                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
+                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
+                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
+                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
+            );
+            PatchPediaDirector.AddIdentifiablePage("Powder", 2,
+                "Another part of the Powder Gastropod is their confidant. Powder has a confidant who is a Snowball.\n" +
+                "This confidant protects them from potential threats when they can. " +
+                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround.\n" +
+                "It is also known that their superiors do not have more than one confidant. They all share the same number of confidants."
+            );
+            PatchPediaDirector.AddIdentifiablePage("Powder", 3,
+                "This is a type of gastropod that'll have kings & queens.\n" +
+                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
+                "This gastropod type specifically spawns in the Powderfall Bluffs."
+            );
         }
 
         private static GameObject[] CreateAccessories(bool isSuperior)

@@ -1,5 +1,7 @@
 ﻿using Gastropods.Assist;
+using Gastropods.Components;
 using Gastropods.Components.FedVaccables;
+using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -8,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Data.Gastropods
 {
@@ -23,9 +26,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            sunlightGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, false, Color.yellow);
-            sunlightQueenGastropod = GastroUtility.CreateIdentifiable("Sunlight", true, false, Color.yellow);
-            sunlightKingGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, true, Color.yellow);
+            sunlightGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, false, false, false, Color.yellow);
+            sunlightQueenGastropod = GastroUtility.CreateIdentifiable("Sunlight", true, false, false, false, Color.yellow);
+            sunlightKingGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, true, false, false, Color.yellow);
         }
 
         public static void Load(string sceneName)
@@ -37,12 +40,39 @@ namespace Gastropods.Data.Gastropods
                         GastroUtility.CreateGastropod("Sunlight", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodSunlight")), sunlightGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("sunlight_gastropod_shell").sharedMesh, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Sunlight", false, true, false, null, sunlightQueenGastropod, Il2CppType.Of<SunlightFedVaccable>(), Il2CppType.Of<SunlightReproduce>(), gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<SunlightVaccedPopup>();
                         GastroUtility.CreateKingGastropod("Sunlight", false, true, false, null, sunlightKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<SunlightVaccedPopup>();
                         break;
                     }
             }
+        }
+
+        public static void CreatePedia()
+        {
+            GastroUtility.CreatePediaEntry(sunlightGastropod, "Sunlight",
+                "Rise and shine! Sunlight is ready to satisfy your eyes.",
+
+                "Sunlight Gastropods are one of the <b>second gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
+                "You'll see blocks of sun sap embedded into their shell as a sign of.. well sun sap. " +
+                "They look their best when the sun is out and is rather nice to others. This snail really knows how to show off! " +
+                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
+
+                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
+                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
+                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
+                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
+            );
+            PatchPediaDirector.AddIdentifiablePage("Sunlight", 2,
+                "Another part of the Sunlight Gastropod is their confidant. Sunlight has a confidant who is a Sun.\n" +
+                "This confidant protects them from potential threats when they can. " +
+                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround."
+            );
+            PatchPediaDirector.AddIdentifiablePage("Sunlight", 3,
+                "This is a type of gastropod that'll have kings & queens.\n" +
+                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
+                "This gastropod type specifically spawns in the Starlight Strand."
+            );
         }
 
         private static GameObject[] CreateAccessories(bool isSuperior)

@@ -5,4 +5,6 @@ GotoSuperior (Maybe),
 LazyVaccable,
 ReproduceOnNearby (Maybe not entirely),
 HungryAttacker,
-DestroyAfterHours
+DestroyAfterHours,
+VaccedPopup,
+ConfidantController (once fully implemented)

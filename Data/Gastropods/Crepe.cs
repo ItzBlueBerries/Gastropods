@@ -1,9 +1,5 @@
 ﻿using Gastropods.Assist;
-using Gastropods.Components;
-using Gastropods.Components.FedVaccables;
-using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
-using Il2CppInterop.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +14,7 @@ namespace Gastropods.Data.Gastropods
         private static Color[] gastroPalette = new Color[] { LoadHex("#ffd886"), LoadHex("#eba30f"), Color.white };
         private static Color[] gastroShellPalette = new Color[] { Color.white, LoadHex("#eba30f"), LoadHex("#ffd886") };
 
-        public static void Initialize() => crepeGastropod = GastroUtility.CreateIdentifiable("Crepe", false, false, LoadHex("#ffd886"));
+        public static void Initialize() => crepeGastropod = GastroUtility.CreateIdentifiable("Crepe", false, false, false, false, LoadHex("#ffd886"));
 
         public static void Load(string sceneName)
         {

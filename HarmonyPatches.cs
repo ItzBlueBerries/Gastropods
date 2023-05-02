@@ -31,6 +31,13 @@ namespace Gastropods
                     gastropod.foodGroup = Get<IdentifiableTypeGroup>("MeatGroup");
                     __instance.identifiableTypes.memberTypes.Add(gastropod);
                 }
+
+                foreach (IdentifiableType resource in Gastro.Resource.RESOURCES)
+                {
+                    Get<IdentifiableTypeGroup>("VaccableNonLiquids").memberTypes.Add(resource);
+                    Get<IdentifiableTypeGroup>("CraftGroup").memberTypes.Add(resource);
+                    // __instance.identifiableTypes.memberTypes.Add(resource);
+                }
             }
         }
 
@@ -98,6 +105,27 @@ namespace Gastropods
                     if (identPediaEntry && !__instance.identDict.ContainsKey(identPediaEntry.identifiableType))
                         __instance.identDict.Add(identPediaEntry.identifiableType, pediaEntry);
                 }
+            }
+
+            public static IdentifiablePediaEntry CreateIdentifiableEntry(IdentifiableType identifiableType, string pediaEntryName, PediaTemplate pediaTemplate,
+                LocalizedString pediaTitle, LocalizedString pediaIntro, LocalizedString actionButtonLabel, LocalizedString infoButtonLabel, bool unlockedInitially = false)
+            {
+                if (Get<IdentifiablePediaEntry>(pediaEntryName))
+                    return null;
+
+                IdentifiablePediaEntry identifiablePediaEntry = ScriptableObject.CreateInstance<IdentifiablePediaEntry>();
+
+                identifiablePediaEntry.hideFlags |= HideFlags.HideAndDontSave;
+                identifiablePediaEntry.name = pediaEntryName;
+                identifiablePediaEntry.identifiableType = identifiableType;
+                identifiablePediaEntry.template = pediaTemplate;
+                identifiablePediaEntry.title = pediaTitle;
+                identifiablePediaEntry.description = pediaIntro;
+                identifiablePediaEntry.isUnlockedInitially = unlockedInitially;
+                identifiablePediaEntry.actionButtonLabel = actionButtonLabel;
+                identifiablePediaEntry.infoButtonLabel = infoButtonLabel;
+
+                return identifiablePediaEntry;
             }
 
             public static void AddIdentifiablePage(string pediaEntryName, int pageNumber, string pediaText = "Placeholder Text. (Please set)", bool isHowToUse = false)

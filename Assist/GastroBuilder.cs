@@ -1,4 +1,5 @@
 ﻿using Gastropods.Components;
+using Gastropods.Components.Behaviours;
 using HarmonyLib;
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.Regions;
@@ -193,7 +194,7 @@ namespace Gastropods.Assist
             return entry;
         }
 
-        public static IdentifiableType CreateIdentifiable(string gastroType, bool isQueen, bool isKing, Color gastroColor)
+        public static IdentifiableType CreateIdentifiable(string gastroType, bool isQueen, bool isKing, bool isDefensive, bool isRare, Color gastroColor)
         {
             IdentifiableType gastroIdent = ScriptableObject.CreateInstance<IdentifiableType>();
             gastroIdent.hideFlags |= HideFlags.HideAndDontSave;
@@ -221,6 +222,11 @@ namespace Gastropods.Assist
                 Gastro.QUEEN_GASTROPODS.Add(gastroIdent);
             else if (isKing && !isQueen)
                 Gastro.KING_GASTROPODS.Add(gastroIdent);
+
+            if (isDefensive)
+                Gastro.DEFENSIVE_GASTROPODS.Add(gastroIdent);
+            if (isRare)
+                Gastro.RARE_GASTROPODS.Add(gastroIdent);
 
             return gastroIdent;
         }

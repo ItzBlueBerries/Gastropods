@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Gastropods.Components
+namespace Gastropods.Components.Behaviours
 {
     internal class BounceActorOnCollision : MonoBehaviour
     {

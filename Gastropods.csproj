@@ -19,14 +19,22 @@
     <Compile Remove="Components\Archived\CompanionController.cs" />
     <Compile Remove="Components\Archived\ConfidantAttack.cs" />
     <Compile Remove="Components\Archived\ConfidantController.cs" />
+    <Compile Remove="Components\Archived\DamagePlayerOnTouch.cs" />
+    <Compile Remove="Components\Archived\DamageSlimeOnTouch.cs" />
     <Compile Remove="Components\Archived\GastropodRandomMove.cs" />
+    <Compile Remove="Components\Archived\GastropodType.cs" />
     <Compile Remove="Components\Archived\ShellRetreat.cs" />
     <Compile Remove="Components\Archived\SlimeAttraction.cs" />
+    <Compile Remove="Components\Attackers\HarpoonAttackerV2.cs" />
     <Compile Remove="Components\CompanionController.cs" />
     <Compile Remove="Components\ConfidantAttack.cs" />
     <Compile Remove="Components\ConfidantController.cs" />
+    <Compile Remove="Components\DamagePlayerOnTouch.cs" />
+    <Compile Remove="Components\DamageSlimeOnTouch.cs" />
+    <Compile Remove="Components\GastropodType.cs" />
     <Compile Remove="Components\ShellRetreat.cs" />
     <Compile Remove="Data\Archived\Confidants\Fish.cs" />
+    <Compile Remove="Data\Archived\Resources\SuperiorsFavJuice.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,15 +71,24 @@
 
   <ItemGroup>
     <None Include="Components\Archived\CompanionController.cs" />
-    <None Include="Components\Archived\ConfidantAttack.cs" />
-    <None Include="Components\Archived\ConfidantController.cs" />
+    <None Include="Components\Archived\DamagePlayerOnTouch.cs" />
+    <None Include="Components\Archived\DamageSlimeOnTouch.cs" />
     <None Include="Components\Archived\GastropodRandomMove.cs" />
     <ApplicationDefinition Include="Components\Archived\ConfidantAttack.cs" />
     <ApplicationDefinition Include="Components\Archived\ConfidantController.cs" />
     <ApplicationDefinition Include="Components\Archived\ShellRetreat.cs" />
+    <None Include="Components\Archived\GastropodType.cs" />
     <None Include="Components\Archived\ShellRetreat.cs" />
     <None Include="Components\Archived\SlimeAttraction.cs" />
+    <None Include="Components\Archived\ConfidantAttack.cs" />
+    <None Include="Components\Archived\ConfidantController.cs" />
+    <None Include="Components\Attackers\HarpoonAttackerV2.cs" />
+    <ApplicationDefinition Include="Components\Archived\DamagePlayerOnTouch.cs" />
+    <ApplicationDefinition Include="Components\Archived\DamageSlimeOnTouch.cs" />
+    <ApplicationDefinition Include="Components\Archived\GastropodType.cs" />
     <None Include="Data\Archived\Confidants\Fish.cs" />
+    <None Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />
+    <ApplicationDefinition Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />
     <ApplicationDefinition Include="Components\Archived\CompanionController.cs" />
   </ItemGroup>
 
@@ -87,6 +104,9 @@
     </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>D:\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>D:\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\net6\MelonLoader.dll</HintPath>

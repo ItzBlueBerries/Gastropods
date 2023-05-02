@@ -1,10 +1,12 @@
 ﻿using Gastropods;
+using Gastropods.Components;
 using Il2Cpp;
+using Il2CppInterop.Runtime;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
-#nullable disable
 internal class Utility
 {
     public static class PrefabUtils
@@ -27,16 +29,18 @@ internal class Utility
 
     public static class Gastro
     {
-        public static class Items
+        public static class Resource
         {
-            internal static HashSet<IdentifiableType> COMMON_ITEMS = new HashSet<IdentifiableType>();
-            internal static HashSet<IdentifiableType> RARE_ITEMS = new HashSet<IdentifiableType>();
+            internal static HashSet<IdentifiableType> RESOURCES = new HashSet<IdentifiableType>();
+            internal static HashSet<IdentifiableType> COMMON_RESOURCES = new HashSet<IdentifiableType>();
+            internal static HashSet<IdentifiableType> RARE_RESOURCES = new HashSet<IdentifiableType>();
         }
 
         public static class Pedia
         {
             internal static HashSet<PediaEntry> GASTROPOD_ENTRIES = new HashSet<PediaEntry>();
             internal static HashSet<PediaEntry> TUTORIALS = new HashSet<PediaEntry>();
+            // internal static HashSet<PediaEntry> SUPERIOR_GASTROPOD_ENTRIES = new HashSet<PediaEntry>();
         }
 
         internal static HashSet<IdentifiableType> GASTROPODS = new HashSet<IdentifiableType>();
@@ -47,47 +51,17 @@ internal class Utility
         internal static HashSet<IdentifiableType> RARE_GASTROPODS = new HashSet<IdentifiableType>();
         internal static HashSet<IdentifiableType> DO_SOMETHING_GASTROPODS = new HashSet<IdentifiableType>();
 
-        public static bool IsGastropod(IdentifiableType ident)
-        {
-            if (GASTROPODS.Contains(ident))
-                return true;
-            return false;
-        }
+        public static bool IsGastropod(IdentifiableType ident) => GASTROPODS.Contains(ident);
 
-        public static bool IsQueenGastropod(IdentifiableType ident)
-        {
-            if (QUEEN_GASTROPODS.Contains(ident))
-                return true;
-            return false;
-        }
+        public static bool IsQueenGastropod(IdentifiableType ident) => QUEEN_GASTROPODS.Contains(ident);
 
-        public static bool IsKingGastropod(IdentifiableType ident)
-        {
-            if (KING_GASTROPODS.Contains(ident))
-                return true;
-            return false;
-        }
+        public static bool IsKingGastropod(IdentifiableType ident) => KING_GASTROPODS.Contains(ident);
 
-        public static bool IsDefensiveGastropod(IdentifiableType ident)
-        {
-            if (DEFENSIVE_GASTROPODS.Contains(ident))
-                return true;
-            return false;
-        }
+        public static bool IsDefensiveGastropod(IdentifiableType ident) => DEFENSIVE_GASTROPODS.Contains(ident);
 
-        public static bool IsRareGastropod(IdentifiableType ident)
-        {
-            if (RARE_GASTROPODS.Contains(ident))
-                return true;
-            return false;
-        }
+        public static bool IsRareGastropod(IdentifiableType ident) => RARE_GASTROPODS.Contains(ident);
 
-        public static bool IsDoSomethingGastropod(IdentifiableType ident)
-        {
-            if (DO_SOMETHING_GASTROPODS.Contains(ident))
-                return true;
-            return false;
-        }
+        public static bool IsDoSomethingGastropod(IdentifiableType ident) => DO_SOMETHING_GASTROPODS.Contains(ident);
     }
 
     public static Texture2D LoadImage(string filename)
@@ -123,6 +97,31 @@ internal class Utility
 
 internal static class Extensions
 {
+    /*public static T Il2CppFind<T>(this Il2CppSystem.Collections.Generic.List<T> list, Func<T, bool> predicate)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            T item = list[i];
+            if (predicate(item))
+            {
+                return item;
+            }
+        }
+        return default(T);
+    }
+
+    public static bool Il2CppAny<T>(this Il2CppSystem.Collections.Generic.List<T> list, Func<T, bool> predicate)
+    {
+        foreach (T element in list)
+        {
+            if (predicate(element))
+            {
+                return true;
+            }
+        }
+        return false;
+    }*/
+
     public static string GetPath(this GameObject obj)
     {
         string path = obj.name;
@@ -151,6 +150,14 @@ internal static class Extensions
         return slimeBones;
     }
 
+    public static void AddComponents(this GameObject gameObject, params Il2CppSystem.Type[] types)
+    {
+        foreach (Il2CppSystem.Type componentType in types)
+        {
+            gameObject.AddComponent(componentType);
+        }
+    }
+
     public static SlimeAppearanceStructure Clone(this SlimeAppearanceStructure structure)
     {
         SlimeAppearanceStructure slimeAppearanceStructure = new SlimeAppearanceStructure(structure);
@@ -170,4 +177,3 @@ internal static class Extensions
     public static T LoadFromObject<T>(this AssetBundle bundle, string name) where T : UnityEngine.Object
     { return bundle.LoadAsset(name).Cast<GameObject>().GetComponentInChildren<T>(); }
 }
-#nullable restore

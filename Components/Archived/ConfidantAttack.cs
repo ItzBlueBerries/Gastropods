@@ -11,14 +11,22 @@ namespace Gastropods.Components
     {
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.GetComponent<Rigidbody>())
-            {
-                if (collision.gameObject.GetComponent<IdentifiableActor>().identType.Cast<SlimeDefinition>())
-                {
-                    collision.gameObject.GetComponent<SlimeHealth>().currHealth -= 10;
-                    Destroyer.Destroy(gameObject, "ConfidantController.Update");
-                }
-            }
+            GameObject obj = collision.gameObject;
+
+            if (!obj.GetComponent<Rigidbody>())
+                return;
+
+            if (!obj.GetComponent<IdentifiableActor>())
+                return;
+
+            if (Gastro.IsGastropod(obj.GetComponent<IdentifiableActor>().identType))
+                return;
+
+            if (!Get<IdentifiableTypeGroup>("BaseSlimeGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
+                return;
+
+            collision.gameObject.GetComponent<SlimeHealth>().currHealth -= 10;
+            Destroyer.Destroy(gameObject, "ConfidantAttack.OnCollisionEnter");
         }
     }
 }

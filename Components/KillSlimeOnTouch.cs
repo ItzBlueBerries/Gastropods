@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gastropods.Components
 {
-    internal class HarpoonKillOnTouch : MonoBehaviour
+    internal class KillSlimeOnTouch : MonoBehaviour
     {
         void OnCollisionEnter(Collision collision)
         {
@@ -26,7 +26,7 @@ namespace Gastropods.Components
             }
 
             if (Get<IdentifiableTypeGroup>("BaseSlimeGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
-                Destroyer.DestroyActor(obj, "HarpoonKillOnTouch.OnCollisionEnter");
+                Destroyer.DestroyActor(obj, "KillSlimeOnTouch.OnCollisionEnter");
         }
     }
 }

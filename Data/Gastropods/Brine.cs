@@ -1,5 +1,7 @@
 ﻿using Gastropods.Assist;
+using Gastropods.Components;
 using Gastropods.Components.FedVaccables;
+using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Data.Gastropods
 {
@@ -24,9 +27,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            brineGastropod = GastroUtility.CreateIdentifiable("Brine", false, false, Color.cyan);
-            brineQueenGastropod = GastroUtility.CreateIdentifiable("Brine", true, false, Color.cyan);
-            brineKingGastropod = GastroUtility.CreateIdentifiable("Brine", false, true, Color.cyan);
+            brineGastropod = GastroUtility.CreateIdentifiable("Brine", false, false, false, false, Color.cyan);
+            brineQueenGastropod = GastroUtility.CreateIdentifiable("Brine", true, false, false, false, Color.cyan);
+            brineKingGastropod = GastroUtility.CreateIdentifiable("Brine", false, true, false, false, Color.cyan);
         }
 
         public static void Load(string sceneName)
@@ -36,11 +39,40 @@ namespace Gastropods.Data.Gastropods
                 case "GameCore":
                     {
                         GastroUtility.CreateGastropod("Brine", true, false, false, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodBrine")), brineGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(false));
-                        GastroUtility.CreateQueenGastropod("Brine", false, false, false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(true));
-                        GastroUtility.CreateKingGastropod("Brine", false, false, false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, null, null, CreateAccessories(true));
+                        GastroUtility.CreateQueenGastropod("Brine", false, false, false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(true))
+                            .Item1.AddComponent<BrineVaccedPopup>();
+                        GastroUtility.CreateKingGastropod("Brine", false, false, false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, null, null, CreateAccessories(true))
+                            .Item1.AddComponent<BrineVaccedPopup>();
                         break;
                     }
             }
+        }
+
+        public static void CreatePedia()
+        {
+            GastroUtility.CreatePediaEntry(brineGastropod, "Brine",
+                "Sea Stars, Fishies and Snails! All in one.",
+
+                "Brine Gastropods are one of the <b>first gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
+                "Being raised by their superior gastropods, they will follow them around if they so choose like almost any other gastropod. " +
+                "Although being cute and adorable, they're a type of food that is given to the slimes you ranch! So I guess that's a bit of a choice there. " +
+                "You know what though? There is much more to discover with these guys and their other types that came along with them.",
+
+                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
+                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
+                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
+                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
+            );
+            PatchPediaDirector.AddIdentifiablePage("Brine", 2,
+                "Another part of the Brine Gastropod is their confidant. Brine has a confidant who is a Fish.\n" +
+                "This confidant protects them from potential threats when they can. " +
+                "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround."
+            );
+            PatchPediaDirector.AddIdentifiablePage("Brine", 3,
+                "This is a type of gastropod that'll have kings & queens.\n" +
+                "They do not spawn on their own and require to be reproduced by a superior. Superiors spawn on their own.\n" +
+                "This gastropod type specifically spawns in the Rainbow Fields. Occasionally in the Pink Canyon. (Where Angler slimes spawn)"
+            );
         }
 
         private static GameObject[] CreateAccessories(bool isSuperior)
@@ -136,5 +168,7 @@ namespace Gastropods.Data.Gastropods
 
             return new GameObject[] { };
         }
+
+
     }
 }

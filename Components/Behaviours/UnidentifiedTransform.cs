@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gastropods.Components
+namespace Gastropods.Components.Behaviours
 {
     internal class UnidentifiedTransform : MonoBehaviour
     {
@@ -23,7 +23,7 @@ namespace Gastropods.Components
             List<IdentifiableType> rareItems = new List<IdentifiableType>();
             List<SlimeDefinition> rareSlimes = new List<SlimeDefinition>();
 
-            foreach (IdentifiableType item in Gastro.Items.RARE_ITEMS)
+            foreach (IdentifiableType item in Gastro.Resource.RARE_RESOURCES)
                 rareItems.Add(item);
             rareItems.Add(Get<IdentifiableType>("MoondewNectar"));
 

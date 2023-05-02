@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Gastropods.Components
+namespace Gastropods.Components.Behaviours
 {
     internal class ReproduceOnNearby : MonoBehaviour
     {
@@ -41,13 +41,13 @@ namespace Gastropods.Components
         {
             if (timeDir.HasReached(searchCooldown) && target == null && searchCooldown != default)
             {
-                FindKingInScene(); 
+                FindKingInScene();
                 searchCooldown = timeDir.HoursFromNowOrStart(UnityEngine.Random.Range(1, 3 * 2));
             }
 
             if (timeDir.HasReached(reproduceCooldown) && target != null && reproduceCooldown != default)
             {
-                ReproduceWhenNearby(); 
+                ReproduceWhenNearby();
                 reproduceCooldown = timeDir.HoursFromNowOrStart(UnityEngine.Random.Range(minReproduceTime, maxReproduceTime));
             }
         }

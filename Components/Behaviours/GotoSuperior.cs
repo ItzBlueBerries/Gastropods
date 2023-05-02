@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gastropods.Components
+namespace Gastropods.Components.Behaviours
 {
     internal class GotoSuperior : MonoBehaviour
     {
