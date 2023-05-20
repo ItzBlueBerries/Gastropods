@@ -1,7 +1,7 @@
 ﻿using Gastropods.Assist;
 using Gastropods.Components;
 using Gastropods.Components.FedVaccables;
-using Gastropods.Components.Popups;
+// using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -29,7 +29,7 @@ namespace Gastropods.Data.Gastropods
         {
             brineGastropod = GastroUtility.CreateIdentifiable("Brine", false, false, false, false, Color.cyan);
             brineQueenGastropod = GastroUtility.CreateIdentifiable("Brine", true, false, false, false, Color.cyan);
-            brineKingGastropod = GastroUtility.CreateIdentifiable("Brine", false, true, false, false, Color.cyan);
+            brineKingGastropod = GastroUtility.CreateIdentifiable("Brine", false, true, false, false, Color.blue);
         }
 
         public static void Load(string sceneName)
@@ -39,10 +39,8 @@ namespace Gastropods.Data.Gastropods
                 case "GameCore":
                     {
                         GastroUtility.CreateGastropod("Brine", true, false, false, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodBrine")), brineGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(false));
-                        GastroUtility.CreateQueenGastropod("Brine", false, false, false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(true))
-                            .Item1.AddComponent<BrineVaccedPopup>();
-                        GastroUtility.CreateKingGastropod("Brine", false, false, false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, null, null, CreateAccessories(true))
-                            .Item1.AddComponent<BrineVaccedPopup>();
+                        GastroUtility.CreateQueenGastropod("Brine", false, false, false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(true));
+                        GastroUtility.CreateKingGastropod("Brine", false, false, false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, null, null, CreateAccessories(true));
                         break;
                     }
             }
@@ -168,7 +166,5 @@ namespace Gastropods.Data.Gastropods
 
             return new GameObject[] { };
         }
-
-
     }
 }

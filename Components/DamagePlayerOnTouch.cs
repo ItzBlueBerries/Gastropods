@@ -14,11 +14,7 @@ namespace Gastropods.Components
 
         public int damagePerTouch = 5;
 
-        void Start()
-        {
-            damageSource = Instantiate(FindObjectOfType<DamageSourceDefinition>());
-            damageSource.name = "GastropodDamageSource";
-        }
+        void Start() => damageSource = Get<DamageSourceDefinition>("GastropodDamageSource");
 
         void OnCollisionEnter(Collision collision)
         {

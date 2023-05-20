@@ -2,7 +2,7 @@
 using Gastropods.Components;
 using Gastropods.Components.Attackers;
 using Gastropods.Components.FedVaccables;
-using Gastropods.Components.Popups;
+// using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -29,7 +29,7 @@ namespace Gastropods.Data.Gastropods
         {
             primalGastropod = GastroUtility.CreateIdentifiable("Primal", false, false, true, false, LoadHex("#964B00"));
             primalQueenGastropod = GastroUtility.CreateIdentifiable("Primal", true, false, true, false, LoadHex("#964B00"));
-            primalKingGastropod = GastroUtility.CreateIdentifiable("Primal", false, true, true, false, LoadHex("#964B00"));
+            primalKingGastropod = GastroUtility.CreateIdentifiable("Primal", false, true, true, false, LoadHex("#8b0000"));
 
             Gastro.DO_SOMETHING_GASTROPODS.Add(primalGastropod);
             Gastro.DO_SOMETHING_GASTROPODS.Add(primalQueenGastropod);
@@ -47,10 +47,10 @@ namespace Gastropods.Data.Gastropods
                             .Item1.AddComponent<HungryAttacker>();
                         GastroUtility.CreateQueenGastropod("Primal", false, true, false, null, primalQueenGastropod, Il2CppType.Of<PrimalFedVaccable>(), Il2CppType.Of<PrimalReproduce>(), gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("primal_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true))
-                            .Item1.AddComponents(Il2CppType.Of<HungryAttacker>(), Il2CppType.Of<PrimalVaccedPopup>());
+                            .Item1.AddComponents(Il2CppType.Of<HungryAttacker>());
                         GastroUtility.CreateKingGastropod("Primal", false, true, false, null, primalKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("primal_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true))
-                            .Item1.AddComponents(Il2CppType.Of<HungryAttacker>(), Il2CppType.Of<PrimalVaccedPopup>());
+                            .Item1.AddComponents(Il2CppType.Of<HungryAttacker>());
                         break;
                     }
             }

@@ -1,7 +1,7 @@
 ﻿using Gastropods.Assist;
 using Gastropods.Components;
 using Gastropods.Components.FedVaccables;
-using Gastropods.Components.Popups;
+// using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -26,9 +26,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            sunlightGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, false, false, false, Color.yellow);
-            sunlightQueenGastropod = GastroUtility.CreateIdentifiable("Sunlight", true, false, false, false, Color.yellow);
-            sunlightKingGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, true, false, false, Color.yellow);
+            sunlightGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, false, false, false, LoadHex("#f2ba49"));
+            sunlightQueenGastropod = GastroUtility.CreateIdentifiable("Sunlight", true, false, false, false, LoadHex("#f2ba49"));
+            sunlightKingGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, true, false, false, Color.red);
         }
 
         public static void Load(string sceneName)
@@ -40,9 +40,9 @@ namespace Gastropods.Data.Gastropods
                         GastroUtility.CreateGastropod("Sunlight", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodSunlight")), sunlightGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("sunlight_gastropod_shell").sharedMesh, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Sunlight", false, true, false, null, sunlightQueenGastropod, Il2CppType.Of<SunlightFedVaccable>(), Il2CppType.Of<SunlightReproduce>(), gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<SunlightVaccedPopup>();
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
                         GastroUtility.CreateKingGastropod("Sunlight", false, true, false, null, sunlightKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<SunlightVaccedPopup>();
+                            GBundle.models.LoadFromObject<MeshFilter>("sunlight_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
                         break;
                     }
             }

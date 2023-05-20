@@ -1,7 +1,7 @@
 ﻿using Gastropods.Assist;
 using Gastropods.Components;
 using Gastropods.Components.FedVaccables;
-using Gastropods.Components.Popups;
+// using Gastropods.Components.Popups;
 using Gastropods.Components.ReproduceOnNearbys;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
@@ -28,7 +28,7 @@ namespace Gastropods.Data.Gastropods
         {
             powderGastropod = GastroUtility.CreateIdentifiable("Powder", false, false, false, false, Color.white);
             powderQueenGastropod = GastroUtility.CreateIdentifiable("Powder", true, false, false, false, Color.white);
-            powderKingGastropod = GastroUtility.CreateIdentifiable("Powder", false, true, false, false, Color.white);
+            powderKingGastropod = GastroUtility.CreateIdentifiable("Powder", false, true, false, false, LoadHex("#d0eceb"));
         }
 
         public static void Load(string sceneName)
@@ -38,11 +38,11 @@ namespace Gastropods.Data.Gastropods
                 case "GameCore":
                     {
                         GastroUtility.CreateGastropod("Powder", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodPowder")), powderGastropod, gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false)).Item1.AddComponent<PowderVaccedPopup>();
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Powder", false, true, false, null, powderQueenGastropod, Il2CppType.Of<PowderFedVaccable>(), Il2CppType.Of<PowderReproduce>(), gastroPalette, gastroShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<PowderVaccedPopup>();
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
                         GastroUtility.CreateKingGastropod("Powder", false, true, false, null, powderKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null,
-                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true)).Item1.AddComponent<PowderVaccedPopup>();
+                            GBundle.models.LoadFromObject<MeshFilter>("powder_queen_gastropod_shell").sharedMesh, null, CreateAccessories(true));
                         break;
                     }
             }

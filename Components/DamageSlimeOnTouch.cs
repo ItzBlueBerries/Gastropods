@@ -12,13 +12,9 @@ namespace Gastropods.Components
     {
         private DamageSourceDefinition damageSource;
 
-        public int damagePerTouch = 5;
+        public int damagePerTouch = 2;
 
-        void Start()
-        {
-            damageSource = Instantiate(FindObjectOfType<DamageSourceDefinition>());
-            damageSource.name = "GastropodDamageSource";
-        }
+        void Start() => damageSource = Get<DamageSourceDefinition>("GastropodDamageSource");
 
         void OnCollisionEnter(Collision collision)
         {
@@ -30,7 +26,7 @@ namespace Gastropods.Components
             if (!obj.GetComponent<IdentifiableActor>())
                 return;
 
-            foreach (IdentifiableType gastropod in GetAllGastropods())
+            foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
             {
                 if (GetIdentType(obj) == gastropod)
                     return;

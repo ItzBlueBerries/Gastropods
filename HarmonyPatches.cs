@@ -66,7 +66,8 @@ namespace Gastropods
                 List<Sprite> gastropodCategoryIcons = new List<Sprite>()
                 {
                     CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropods")),
-                    CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsToxin"))
+                    CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsToxin")),
+                    CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsHare"))
                 };
 
                 if (Get<PediaEntryCategory>("Gastropods"))
@@ -283,6 +284,8 @@ namespace Gastropods
                 {
                     SlimeDefinition slimeDefinition = definition.Cast<SlimeDefinition>();
                     if (slimeDefinition == null || slimeDefinition.Diet == null)
+                        continue;
+                    if (!slimeDefinition.Diet.MajorFoodIdentifiableTypeGroups.Contains(Get<IdentifiableTypeGroup>("MeatGroup")))
                         continue;
                     if (__instance.slimeDefinition == slimeDefinition)
                     {

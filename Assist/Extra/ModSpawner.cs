@@ -11,7 +11,7 @@ namespace Gastropods.Assist
 {
     internal class ModSpawner
     {
-        public static void AddToFields(string sceneName, IdentifiableType identifiableType, float weight)
+        public static void AddToFields(string sceneName, IdentifiableType[] identifiableTypes, float weight)
         {
             switch (sceneName.Contains("zoneFields"))
             {
@@ -22,123 +22,7 @@ namespace Gastropods.Assist
                         {
                             foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
                             {
-                                SlimeSet.Member member = new SlimeSet.Member
-                                {
-                                    prefab = identifiableType.prefab,
-                                    identType = identifiableType,
-                                    weight = weight
-                                };
-
-                                if (spawnConstraint.slimeset.members.Contains(member))
-                                    break;
-
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
-                            }
-                        }
-                        break;
-                    }
-            }
-        }
-
-        public static void AddToStrand(string sceneName, IdentifiableType identifiableType, float weight)
-        {
-            switch (sceneName.Contains("zoneStrand"))
-            {
-                case true:
-                    {
-                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
-                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
-                        {
-                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
-                            {
-                                SlimeSet.Member member = new SlimeSet.Member
-                                {
-                                    prefab = identifiableType.prefab,
-                                    identType = identifiableType,
-                                    weight = weight
-                                };
-
-                                if (spawnConstraint.slimeset.members.Contains(member))
-                                    break;
-
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
-                            }
-                        }
-                        break;
-                    }
-            }
-        }
-
-        public static void AddToGorge(string sceneName, IdentifiableType identifiableType, float weight)
-        {
-            switch (sceneName.Contains("zoneGorge"))
-            {
-                case true:
-                    {
-                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
-                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
-                        {
-                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
-                            {
-                                SlimeSet.Member member = new SlimeSet.Member
-                                {
-                                    prefab = identifiableType.prefab,
-                                    identType = identifiableType,
-                                    weight = weight
-                                };
-
-                                if (spawnConstraint.slimeset.members.Contains(member))
-                                    break;
-
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
-                            }
-                        }
-                        break;
-                    }
-            }
-        }
-
-        public static void AddToBluffs(string sceneName, IdentifiableType identifiableType, float weight)
-        {
-            switch (sceneName.Contains("zoneBluffs"))
-            {
-                case true:
-                    {
-                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
-                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
-                        {
-                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
-                            {
-                                SlimeSet.Member member = new SlimeSet.Member
-                                {
-                                    prefab = identifiableType.prefab,
-                                    identType = identifiableType,
-                                    weight = weight
-                                };
-
-                                if (spawnConstraint.slimeset.members.Contains(member))
-                                    break;
-
-                                spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
-                            }
-                        }
-                        break;
-                    }
-            }
-        }
-
-        internal class Other
-        {
-            public static void AddToPinkCanyon(string sceneName, IdentifiableType identifiableType, float weight)
-            {
-                switch (sceneName == "zoneStrand_Area2")
-                {
-                    case true:
-                        {
-                            IEnumerable<DirectedSlimeSpawner> source = GameObject.Find("zoneStrand_Area2/cellPinkCanyon/Sector").GetComponentsInChildren<DirectedSlimeSpawner>();
-                            foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
-                            {
-                                foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                                foreach (IdentifiableType identifiableType in identifiableTypes)
                                 {
                                     SlimeSet.Member member = new SlimeSet.Member
                                     {
@@ -153,21 +37,25 @@ namespace Gastropods.Assist
                                     spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                 }
                             }
-                            break;
                         }
-                }
+                        break;
+                    }
             }
+        }
 
-            public static void AddToSwamp(string sceneName, IdentifiableType identifiableType, float weight)
+        public static void AddToStrand(string sceneName, IdentifiableType[] identifiableTypes, float weight)
+        {
+            switch (sceneName.Contains("zoneStrand"))
             {
-                switch (sceneName == "zoneStrand_Area2")
-                {
-                    case true:
+                case true:
+                    {
+                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
+
+                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
                         {
-                            IEnumerable<DirectedSlimeSpawner> source = GameObject.Find("zoneStrand_Area2/cellSwamp/Sector").GetComponentsInChildren<DirectedSlimeSpawner>();
-                            foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
                             {
-                                foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                                foreach (IdentifiableType identifiableType in identifiableTypes)
                                 {
                                     SlimeSet.Member member = new SlimeSet.Member
                                     {
@@ -180,6 +68,137 @@ namespace Gastropods.Assist
                                         break;
 
                                     spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
+        }
+
+        public static void AddToGorge(string sceneName, IdentifiableType[] identifiableTypes, float weight)
+        {
+            switch (sceneName.Contains("zoneGorge"))
+            {
+                case true:
+                    {
+                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
+                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                        {
+                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                            {
+                                foreach (IdentifiableType identifiableType in identifiableTypes)
+                                {
+                                    SlimeSet.Member member = new SlimeSet.Member
+                                    {
+                                        prefab = identifiableType.prefab,
+                                        identType = identifiableType,
+                                        weight = weight
+                                    };
+
+                                    if (spawnConstraint.slimeset.members.Contains(member))
+                                        break;
+
+                                    spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
+        }
+
+        public static void AddToBluffs(string sceneName, IdentifiableType[] identifiableTypes, float weight)
+        {
+            switch (sceneName.Contains("zoneBluffs"))
+            {
+                case true:
+                    {
+                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
+                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                        {
+                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                            {
+                                foreach (IdentifiableType identifiableType in identifiableTypes)
+                                {
+                                    SlimeSet.Member member = new SlimeSet.Member
+                                    {
+                                        prefab = identifiableType.prefab,
+                                        identType = identifiableType,
+                                        weight = weight
+                                    };
+
+                                    if (spawnConstraint.slimeset.members.Contains(member))
+                                        break;
+
+                                    spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
+        }
+
+        internal class Other
+        {
+            public static void AddToPinkCanyon(string sceneName, IdentifiableType[] identifiableTypes, float weight)
+            {
+                switch (sceneName == "zoneStrand_Area2")
+                {
+                    case true:
+                        {
+                            IEnumerable<DirectedSlimeSpawner> source = GameObject.Find("zoneStrand_Area2/cellPinkCanyon/Sector").GetComponentsInChildren<DirectedSlimeSpawner>();
+                            foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                            {
+                                foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                                {
+                                    foreach (IdentifiableType identifiableType in identifiableTypes)
+                                    {
+                                        SlimeSet.Member member = new SlimeSet.Member
+                                        {
+                                            prefab = identifiableType.prefab,
+                                            identType = identifiableType,
+                                            weight = weight
+                                        };
+
+                                        if (spawnConstraint.slimeset.members.Contains(member))
+                                            break;
+
+                                        spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                }
+            }
+
+            public static void AddToSwamp(string sceneName, IdentifiableType[] identifiableTypes, float weight)
+            {
+                switch (sceneName == "zoneStrand_Area2")
+                {
+                    case true:
+                        {
+                            IEnumerable<DirectedSlimeSpawner> source = GameObject.Find("zoneStrand_Area2/cellSwamp/Sector").GetComponentsInChildren<DirectedSlimeSpawner>();
+                            foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                            {
+                                foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                                {
+                                    foreach (IdentifiableType identifiableType in identifiableTypes)
+                                    {
+                                        SlimeSet.Member member = new SlimeSet.Member
+                                        {
+                                            prefab = identifiableType.prefab,
+                                            identType = identifiableType,
+                                            weight = weight
+                                        };
+
+                                        if (spawnConstraint.slimeset.members.Contains(member))
+                                            break;
+
+                                        spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                    }
                                 }
                             }
                             break;

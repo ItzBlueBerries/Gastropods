@@ -23,7 +23,7 @@ namespace Gastropods.Components.Attackers
         public GameObject spinePrefab;
         public int spineCount = 36;
         public int delayMilliseconds = 1000;
-        public float reloadTime = 1.5f;
+        public float reloadTime = 2;
 
         void Start()
         {
@@ -41,6 +41,9 @@ namespace Gastropods.Components.Attackers
 
             if (objectCache.Count > 0)
                 ShootSpine(objectCache[new System.Random().Next(0, objectCache.Count)]);
+
+            if (Vector3.Distance(transform.position, SceneContext.Instance.Player.transform.position) <= 8)
+                ShootSpine(SceneContext.Instance.Player.gameObject);
 
             if (totalSpinesLeft == default && !refilling && timeTillRefill == default)
             {
@@ -110,7 +113,8 @@ namespace Gastropods.Components.Attackers
             prefab.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("confidant_spine").sharedMesh;
             prefab.AddComponent<MeshRenderer>().sharedMaterial = spineMaterial;
             prefab.AddComponent<BoxCollider>();
-            prefab.AddComponent<KillSlimeOnTouch>();
+            prefab.AddComponent<DamageSlimeOnTouch>();
+            prefab.AddComponent<DamagePlayerOnTouch>();
 
             return prefab;
         }

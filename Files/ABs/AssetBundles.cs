@@ -20,5 +20,6 @@ namespace Gastropods
 
         internal static AssetBundle models = AssetBundle.LoadFromMemory(GetAsset("Files.ABs.models"));
         internal static AssetBundle anims = AssetBundle.LoadFromMemory(GetAsset("Files.ABs.anims"));
+        internal static AssetBundle shaders = AssetBundle.LoadFromMemory(GetAsset("Files.ABs.shaders"));
     }
 }

@@ -23,15 +23,16 @@
     <Compile Remove="Components\Archived\DamageSlimeOnTouch.cs" />
     <Compile Remove="Components\Archived\GastropodRandomMove.cs" />
     <Compile Remove="Components\Archived\GastropodType.cs" />
+    <Compile Remove="Components\Archived\JuicyProduction.cs" />
+    <Compile Remove="Components\Archived\PopupComponents.cs" />
     <Compile Remove="Components\Archived\ShellRetreat.cs" />
     <Compile Remove="Components\Archived\SlimeAttraction.cs" />
     <Compile Remove="Components\Attackers\HarpoonAttackerV2.cs" />
     <Compile Remove="Components\CompanionController.cs" />
     <Compile Remove="Components\ConfidantAttack.cs" />
     <Compile Remove="Components\ConfidantController.cs" />
-    <Compile Remove="Components\DamagePlayerOnTouch.cs" />
-    <Compile Remove="Components\DamageSlimeOnTouch.cs" />
     <Compile Remove="Components\GastropodType.cs" />
+    <Compile Remove="Components\PopupComponents.cs" />
     <Compile Remove="Components\ShellRetreat.cs" />
     <Compile Remove="Data\Archived\Confidants\Fish.cs" />
     <Compile Remove="Data\Archived\Resources\SuperiorsFavJuice.cs" />
@@ -40,10 +41,16 @@
   <ItemGroup>
     <None Remove="Files\ABs\anims" />
     <None Remove="Files\ABs\models" />
+    <None Remove="Files\ABs\shaders" />
     <None Remove="Files\Icons\Categories\iconCategoryGastropods.png" />
+    <None Remove="Files\Icons\Categories\iconCategoryGastropodsHare.png" />
     <None Remove="Files\Icons\Categories\iconCategoryGastropodsToxin.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodBrine.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodBubbly.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodCrepe.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodHare.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodPowder.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodPrickly.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodPrimal.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodSunlight.png" />
     <None Remove="Files\Icons\Gastropods\iconGastropodToxin.png" />
@@ -56,10 +63,16 @@
   <ItemGroup>
     <EmbeddedResource Include="Files\ABs\anims" />
     <EmbeddedResource Include="Files\ABs\models" />
+    <EmbeddedResource Include="Files\ABs\shaders" />
     <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropods.png" />
+    <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropodsHare.png" />
     <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropodsToxin.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodBrine.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodBubbly.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodCrepe.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodHare.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPowder.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrickly.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrimal.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodSunlight.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodToxin.png" />
@@ -71,13 +84,13 @@
 
   <ItemGroup>
     <None Include="Components\Archived\CompanionController.cs" />
-    <None Include="Components\Archived\DamagePlayerOnTouch.cs" />
-    <None Include="Components\Archived\DamageSlimeOnTouch.cs" />
     <None Include="Components\Archived\GastropodRandomMove.cs" />
     <ApplicationDefinition Include="Components\Archived\ConfidantAttack.cs" />
     <ApplicationDefinition Include="Components\Archived\ConfidantController.cs" />
     <ApplicationDefinition Include="Components\Archived\ShellRetreat.cs" />
     <None Include="Components\Archived\GastropodType.cs" />
+    <None Include="Components\Archived\JuicyProduction.cs" />
+    <None Include="Components\Archived\PopupComponents.cs" />
     <None Include="Components\Archived\ShellRetreat.cs" />
     <None Include="Components\Archived\SlimeAttraction.cs" />
     <None Include="Components\Archived\ConfidantAttack.cs" />
@@ -86,6 +99,8 @@
     <ApplicationDefinition Include="Components\Archived\DamagePlayerOnTouch.cs" />
     <ApplicationDefinition Include="Components\Archived\DamageSlimeOnTouch.cs" />
     <ApplicationDefinition Include="Components\Archived\GastropodType.cs" />
+    <ApplicationDefinition Include="Components\Archived\JuicyProduction.cs" />
+    <ApplicationDefinition Include="Components\Archived\PopupComponents.cs" />
     <None Include="Data\Archived\Confidants\Fish.cs" />
     <None Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />
     <ApplicationDefinition Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />

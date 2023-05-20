@@ -31,6 +31,7 @@ namespace Gastropods
                 //Here you have loaded assets like Identifiables and GameContext
                 case "GameCore":
                     {
+                        ModRegistry.LoadInstances();
                         ModRegistry.LoadGastros(sceneName);
                         ModRegistry.LoadFears();
 

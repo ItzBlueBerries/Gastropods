@@ -68,4 +68,13 @@ namespace Gastropods.Components.Popups
             pediaEntry = Get<IdentifiablePediaEntry>("Powder");
         }
     }
+
+    internal class HareVaccedPopup : VaccedPopup
+    {
+        public override void Start()
+        {
+            base.Start();
+            pediaEntry = Get<IdentifiablePediaEntry>("Hare");
+        }
+    }
 }
