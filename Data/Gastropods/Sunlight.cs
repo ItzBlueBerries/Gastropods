@@ -26,9 +26,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            sunlightGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, false, false, false, LoadHex("#f2ba49"));
-            sunlightQueenGastropod = GastroUtility.CreateIdentifiable("Sunlight", true, false, false, false, LoadHex("#f2ba49"));
-            sunlightKingGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, true, false, false, Color.red);
+            sunlightGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, false, false, false, false, LoadHex("#f2ba49"));
+            sunlightQueenGastropod = GastroUtility.CreateIdentifiable("Sunlight", true, false, false, false, false, LoadHex("#f2ba49"));
+            sunlightKingGastropod = GastroUtility.CreateIdentifiable("Sunlight", false, true, false, false, false, Color.red);
         }
 
         public static void Load(string sceneName)
@@ -37,6 +37,11 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
+                        Gastro.GASTROPOD_DIET_DICT.TryAdd(
+                            new IdentifiableType[] { sunlightGastropod, sunlightQueenGastropod, sunlightKingGastropod },
+                            new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("FruitGroup") }
+                        );
+
                         GastroUtility.CreateGastropod("Sunlight", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodSunlight")), sunlightGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("sunlight_gastropod_shell").sharedMesh, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Sunlight", false, true, false, null, sunlightQueenGastropod, Il2CppType.Of<SunlightFedVaccable>(), Il2CppType.Of<SunlightReproduce>(), gastroPalette, gastroShellPalette, null,

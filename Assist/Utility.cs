@@ -49,19 +49,81 @@ internal class Utility
 
         internal static HashSet<IdentifiableType> DEFENSIVE_GASTROPODS = new HashSet<IdentifiableType>();
         internal static HashSet<IdentifiableType> RARE_GASTROPODS = new HashSet<IdentifiableType>();
+        internal static HashSet<IdentifiableType> SUPREME_GASTROPODS = new HashSet<IdentifiableType>();
         internal static HashSet<IdentifiableType> DO_SOMETHING_GASTROPODS = new HashSet<IdentifiableType>();
+        internal static HashSet<IdentifiableType> NON_EATABLE_GASTROPODS = new HashSet<IdentifiableType>();
 
-        public static bool IsGastropod(IdentifiableType ident) => GASTROPODS.Contains(ident);
+        internal static Dictionary<IdentifiableType[], IdentifiableTypeGroup[]> GASTROPOD_DIET_DICT = new Dictionary<IdentifiableType[], IdentifiableTypeGroup[]>();
 
-        public static bool IsQueenGastropod(IdentifiableType ident) => QUEEN_GASTROPODS.Contains(ident);
+        public static bool IsGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
 
-        public static bool IsKingGastropod(IdentifiableType ident) => KING_GASTROPODS.Contains(ident);
+        public static bool IsQueenGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in QUEEN_GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
 
-        public static bool IsDefensiveGastropod(IdentifiableType ident) => DEFENSIVE_GASTROPODS.Contains(ident);
+        public static bool IsKingGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in KING_GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
 
-        public static bool IsRareGastropod(IdentifiableType ident) => RARE_GASTROPODS.Contains(ident);
+        public static bool IsDefensiveGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in DEFENSIVE_GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
 
-        public static bool IsDoSomethingGastropod(IdentifiableType ident) => DO_SOMETHING_GASTROPODS.Contains(ident);
+        public static bool IsRareGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in RARE_GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool IsDoSomethingGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in DO_SOMETHING_GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
+        
+        public static bool IsSupremeGastropod(IdentifiableType ident)
+        {
+            foreach (IdentifiableType gastropod in SUPREME_GASTROPODS)
+            {
+                if (ident == gastropod)
+                    return true;
+            }
+            return false;
+        }
     }
 
     public static Texture2D LoadImage(string filename)

@@ -19,7 +19,7 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            pricklyGastropod = GastroUtility.CreateIdentifiable("Prickly", false, false, true, false, LoadHex("#60a44f"));
+            pricklyGastropod = GastroUtility.CreateIdentifiable("Prickly", false, false, true, false, false, LoadHex("#60a44f"));
             Gastro.DO_SOMETHING_GASTROPODS.Add(pricklyGastropod);
         }
 

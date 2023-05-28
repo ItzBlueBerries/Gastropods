@@ -61,4 +61,22 @@ namespace Gastropods.Components.FedVaccables
             feedTypes = new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("FruitGroup") };
         }
     }
+
+    internal class TraditionalFedVaccable : FedVaccable
+    {
+        public override void Start()
+        {
+            base.Start();
+            feedTypes = new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("VeggieGroup"), Get<IdentifiableTypeGroup>("FruitGroup"), Get<IdentifiableTypeGroup>("MeatGroup") };
+        }
+    }
+
+    internal class DreamyFedVaccable : FedVaccable
+    {
+        public override void Start()
+        {
+            base.Start();
+            feedTypes = new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("CraftGroup"), Get<IdentifiableTypeGroup>("FruitGroup") };
+        }
+    }
 }

@@ -27,9 +27,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            primalGastropod = GastroUtility.CreateIdentifiable("Primal", false, false, true, false, LoadHex("#964B00"));
-            primalQueenGastropod = GastroUtility.CreateIdentifiable("Primal", true, false, true, false, LoadHex("#964B00"));
-            primalKingGastropod = GastroUtility.CreateIdentifiable("Primal", false, true, true, false, LoadHex("#8b0000"));
+            primalGastropod = GastroUtility.CreateIdentifiable("Primal", false, false, true, false, false, LoadHex("#964B00"));
+            primalQueenGastropod = GastroUtility.CreateIdentifiable("Primal", true, false, true, false, false, LoadHex("#964B00"));
+            primalKingGastropod = GastroUtility.CreateIdentifiable("Primal", false, true, true, false, false, LoadHex("#8b0000"));
 
             Gastro.DO_SOMETHING_GASTROPODS.Add(primalGastropod);
             Gastro.DO_SOMETHING_GASTROPODS.Add(primalQueenGastropod);
@@ -42,6 +42,11 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
+                        Gastro.GASTROPOD_DIET_DICT.TryAdd(
+                            new IdentifiableType[] { primalGastropod, primalQueenGastropod, primalKingGastropod },
+                            new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("MeatGroup") }
+                        );
+
                         GastroUtility.CreateGastropod("Primal", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodPrimal")), primalGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("primal_gastropod_shell").sharedMesh, null, CreateAccessories(false))
                             .Item1.AddComponent<HungryAttacker>();

@@ -32,7 +32,7 @@ namespace Gastropods.Assist
                                     };
 
                                     if (spawnConstraint.slimeset.members.Contains(member))
-                                        break;
+                                        continue;
 
                                     spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                 }
@@ -65,7 +65,7 @@ namespace Gastropods.Assist
                                     };
 
                                     if (spawnConstraint.slimeset.members.Contains(member))
-                                        break;
+                                        continue;
 
                                     spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                 }
@@ -97,7 +97,7 @@ namespace Gastropods.Assist
                                     };
 
                                     if (spawnConstraint.slimeset.members.Contains(member))
-                                        break;
+                                        continue;
 
                                     spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                 }
@@ -129,7 +129,7 @@ namespace Gastropods.Assist
                                     };
 
                                     if (spawnConstraint.slimeset.members.Contains(member))
-                                        break;
+                                        continue;
 
                                     spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                 }
@@ -163,7 +163,7 @@ namespace Gastropods.Assist
                                         };
 
                                         if (spawnConstraint.slimeset.members.Contains(member))
-                                            break;
+                                            continue;
 
                                         spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                     }
@@ -195,7 +195,7 @@ namespace Gastropods.Assist
                                         };
 
                                         if (spawnConstraint.slimeset.members.Contains(member))
-                                            break;
+                                            continue;
 
                                         spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
                                     }

@@ -194,7 +194,7 @@ namespace Gastropods.Assist
             return entry;
         }
 
-        public static IdentifiableType CreateIdentifiable(string gastroType, bool isQueen, bool isKing, bool isDefensive, bool isRare, Color gastroColor)
+        public static IdentifiableType CreateIdentifiable(string gastroType, bool isQueen, bool isKing, bool isDefensive, bool isRare, bool isSupreme, Color gastroColor)
         {
             IdentifiableType gastroIdent = ScriptableObject.CreateInstance<IdentifiableType>();
             gastroIdent.hideFlags |= HideFlags.HideAndDontSave;
@@ -227,6 +227,8 @@ namespace Gastropods.Assist
                 Gastro.DEFENSIVE_GASTROPODS.Add(gastroIdent);
             if (isRare)
                 Gastro.RARE_GASTROPODS.Add(gastroIdent);
+            if (isSupreme)
+                Gastro.SUPREME_GASTROPODS.Add(gastroIdent);
 
             return gastroIdent;
         }

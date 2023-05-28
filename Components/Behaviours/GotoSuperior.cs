@@ -58,7 +58,7 @@ namespace Gastropods.Components.Behaviours
                             target = obj.transform; break;
                     }
                 }
-                else if (rand <= 0.5f && rand >= 0.2f)
+                else if (rand < 0.5f && rand >= 0.2f)
                 {
                     if (obj.name.Contains(GetComponent<IdentifiableActor>().identType.name.Replace("Gastropod", "").ToLower() + "KingGastropod"))
                     {

@@ -27,9 +27,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            brineGastropod = GastroUtility.CreateIdentifiable("Brine", false, false, false, false, Color.cyan);
-            brineQueenGastropod = GastroUtility.CreateIdentifiable("Brine", true, false, false, false, Color.cyan);
-            brineKingGastropod = GastroUtility.CreateIdentifiable("Brine", false, true, false, false, Color.blue);
+            brineGastropod = GastroUtility.CreateIdentifiable("Brine", false, false, false, false, false, Color.cyan);
+            brineQueenGastropod = GastroUtility.CreateIdentifiable("Brine", true, false, false, false, false, Color.cyan);
+            brineKingGastropod = GastroUtility.CreateIdentifiable("Brine", false, true, false, false, false, Color.blue);
         }
 
         public static void Load(string sceneName)
@@ -38,6 +38,11 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
+                        Gastro.GASTROPOD_DIET_DICT.TryAdd(
+                            new IdentifiableType[] { brineGastropod, brineQueenGastropod, brineKingGastropod },
+                            new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("VeggieGroup") }
+                        );
+
                         GastroUtility.CreateGastropod("Brine", true, false, false, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodBrine")), brineGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Brine", false, false, false, null, brineQueenGastropod, Il2CppType.Of<BrineFedVaccable>(), Il2CppType.Of<BrineReproduce>(), gastroPalette, gastroShellPalette, null, null, null, CreateAccessories(true));
                         GastroUtility.CreateKingGastropod("Brine", false, false, false, null, brineKingGastropod, gastroDiffPalette, gastroDiffShellPalette, null, null, null, CreateAccessories(true));

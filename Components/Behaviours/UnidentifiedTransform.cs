@@ -9,16 +9,16 @@ namespace Gastropods.Components.Behaviours
 {
     internal class UnidentifiedTransform : MonoBehaviour
     {
+        void SpawnActorAndDestroy(GameObject actor)
+        {
+            SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().TransformFX, transform.position, transform.rotation);
+            SRBehaviour.InstantiateActor(actor, SRSingleton<SceneContext>.Instance.RegionRegistry.CurrentSceneGroup, transform.position, transform.rotation);
+            SceneContext.Instance.PediaDirector.MaybeShowPopup(Get<IdentifiableType>("UnidentifiedGastropod"));
+            Destroyer.DestroyActor(gameObject, "UnidentifiedProduce.ProduceRareItem.SpawnActorAndDestroy");
+        }
+
         void TransformIntoActor()
         {
-            void SpawnActorAndDestroy(GameObject actor)
-            {
-                SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().TransformFX, transform.position, transform.rotation);
-                SRBehaviour.InstantiateActor(actor, SRSingleton<SceneContext>.Instance.RegionRegistry.CurrentSceneGroup, transform.position, transform.rotation);
-                SceneContext.Instance.PediaDirector.MaybeShowPopup(Get<IdentifiableType>("UnidentifiedGastropod"));
-                Destroyer.DestroyActor(gameObject, "UnidentifiedProduce.ProduceRareItem.SpawnActorAndDestroy");
-            }
-
             float rand = UnityEngine.Random.Range(0, 1);
             List<IdentifiableType> rareItems = new List<IdentifiableType>();
             List<SlimeDefinition> rareSlimes = new List<SlimeDefinition>();
@@ -52,8 +52,11 @@ namespace Gastropods.Components.Behaviours
             if (!obj.GetComponent<IdentifiableActor>())
                 return;
 
-            if (Gastro.IsGastropod(obj.GetComponent<IdentifiableActor>().identType))
-                return;
+            foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
+            {
+                if (obj.GetComponent<IdentifiableActor>().identType == gastropod)
+                    return;
+            }
 
             if (!Get<IdentifiableTypeGroup>("CraftGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
                 return;

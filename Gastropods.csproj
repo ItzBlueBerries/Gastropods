@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -39,28 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Files\ABs\anims" />
-    <None Remove="Files\ABs\models" />
-    <None Remove="Files\ABs\shaders" />
-    <None Remove="Files\Icons\Categories\iconCategoryGastropods.png" />
-    <None Remove="Files\Icons\Categories\iconCategoryGastropodsHare.png" />
-    <None Remove="Files\Icons\Categories\iconCategoryGastropodsToxin.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodBrine.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodBubbly.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodCrepe.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodHare.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodPowder.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodPrickly.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodPrimal.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodSunlight.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodToxin.png" />
-    <None Remove="Files\Icons\Gastropods\iconGastropodUnidentified.png" />
-    <None Remove="Files\Icons\Tutorials\iconTutorialDefensivePlusAttackers.png" />
-    <None Remove="Files\Icons\Tutorials\iconTutorialReproduceGastropod.png" />
-    <None Remove="Files\Icons\Tutorials\iconTutorialStubbornGastropod.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Files\ABs\anims" />
     <EmbeddedResource Include="Files\ABs\models" />
     <EmbeddedResource Include="Files\ABs\shaders" />
@@ -76,18 +54,17 @@
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrimal.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodSunlight.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodToxin.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodTraditional.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodUnidentified.png" />
     <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialDefensivePlusAttackers.png" />
     <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialReproduceGastropod.png" />
     <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialStubbornGastropod.png" />
+    <EmbeddedResource Include="Files\Textures\cosmic_tex.png" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Components\Archived\CompanionController.cs" />
     <None Include="Components\Archived\GastropodRandomMove.cs" />
-    <ApplicationDefinition Include="Components\Archived\ConfidantAttack.cs" />
-    <ApplicationDefinition Include="Components\Archived\ConfidantController.cs" />
-    <ApplicationDefinition Include="Components\Archived\ShellRetreat.cs" />
     <None Include="Components\Archived\GastropodType.cs" />
     <None Include="Components\Archived\JuicyProduction.cs" />
     <None Include="Components\Archived\PopupComponents.cs" />
@@ -96,15 +73,8 @@
     <None Include="Components\Archived\ConfidantAttack.cs" />
     <None Include="Components\Archived\ConfidantController.cs" />
     <None Include="Components\Attackers\HarpoonAttackerV2.cs" />
-    <ApplicationDefinition Include="Components\Archived\DamagePlayerOnTouch.cs" />
-    <ApplicationDefinition Include="Components\Archived\DamageSlimeOnTouch.cs" />
-    <ApplicationDefinition Include="Components\Archived\GastropodType.cs" />
-    <ApplicationDefinition Include="Components\Archived\JuicyProduction.cs" />
-    <ApplicationDefinition Include="Components\Archived\PopupComponents.cs" />
     <None Include="Data\Archived\Confidants\Fish.cs" />
     <None Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />
-    <ApplicationDefinition Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />
-    <ApplicationDefinition Include="Components\Archived\CompanionController.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,9 +26,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            powderGastropod = GastroUtility.CreateIdentifiable("Powder", false, false, false, false, Color.white);
-            powderQueenGastropod = GastroUtility.CreateIdentifiable("Powder", true, false, false, false, Color.white);
-            powderKingGastropod = GastroUtility.CreateIdentifiable("Powder", false, true, false, false, LoadHex("#d0eceb"));
+            powderGastropod = GastroUtility.CreateIdentifiable("Powder", false, false, false, false, false, Color.white);
+            powderQueenGastropod = GastroUtility.CreateIdentifiable("Powder", true, false, false, false, false, Color.white);
+            powderKingGastropod = GastroUtility.CreateIdentifiable("Powder", false, true, false, false, false, LoadHex("#d0eceb"));
         }
 
         public static void Load(string sceneName)
@@ -37,6 +37,11 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
+                        Gastro.GASTROPOD_DIET_DICT.TryAdd(
+                            new IdentifiableType[] { powderGastropod, powderQueenGastropod, powderKingGastropod },
+                            new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("VeggieGroup"), Get<IdentifiableTypeGroup>("FruitGroup") }
+                        );
+
                         GastroUtility.CreateGastropod("Powder", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodPowder")), powderGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("powder_gastropod_shell").sharedMesh, null, CreateAccessories(false));
                         GastroUtility.CreateQueenGastropod("Powder", false, true, false, null, powderQueenGastropod, Il2CppType.Of<PowderFedVaccable>(), Il2CppType.Of<PowderReproduce>(), gastroPalette, gastroShellPalette, null,

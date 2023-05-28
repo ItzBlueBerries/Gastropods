@@ -26,9 +26,10 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            hareGastropod = GastroUtility.CreateIdentifiable("Hare", false, false, false, false, Color.grey);
-            hareQueenGastropod = GastroUtility.CreateIdentifiable("Hare", true, false, false, false, Color.grey);
-            hareKingGastropod = GastroUtility.CreateIdentifiable("Hare", false, true, false, false, Color.yellow);
+            hareGastropod = GastroUtility.CreateIdentifiable("Hare", false, false, false, false, false, Color.grey);
+            hareQueenGastropod = GastroUtility.CreateIdentifiable("Hare", true, false, false, false, false, Color.grey);
+            hareKingGastropod = GastroUtility.CreateIdentifiable("Hare", false, true, false, false, false, Color.yellow);
+
             Gastro.DO_SOMETHING_GASTROPODS.Add(hareGastropod);
             Gastro.DO_SOMETHING_GASTROPODS.Add(hareQueenGastropod);
             Gastro.DO_SOMETHING_GASTROPODS.Add(hareKingGastropod);
@@ -40,6 +41,11 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
+                        Gastro.GASTROPOD_DIET_DICT.TryAdd(
+                            new IdentifiableType[] { hareGastropod, hareQueenGastropod, hareKingGastropod },
+                            new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("VeggieGroup") }
+                        );
+
                         GastroUtility.CreateGastropod("Hare", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodHare")), hareGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("hare_shell").sharedMesh, null, CreateAccessories(gastroShellPalette, false)).Item1.AddComponent<AlwaysBeHoppingAround>();
                         GastroUtility.CreateQueenGastropod("Hare", false, true, false, null, hareQueenGastropod, Il2CppType.Of<HareFedVaccable>(), Il2CppType.Of<HareReproduce>(), gastroPalette, gastroShellPalette, null,

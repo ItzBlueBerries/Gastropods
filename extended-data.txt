@@ -7,4 +7,6 @@ ReproduceOnNearby (Maybe not entirely),
 HungryAttacker,
 DestroyAfterHours,
 VaccedPopup,
-ConfidantController (once fully implemented)
+ConfidantController (once fully implemented),
+NighttimeSuperiors,
+GastropodaSearcher

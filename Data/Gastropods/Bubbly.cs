@@ -25,9 +25,9 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            bubblyGastropod = GastroUtility.CreateIdentifiable("Bubbly", false, false, false, false, LoadHex("#ADD8E6"));
-            bubblyQueenGastropod = GastroUtility.CreateIdentifiable("Bubbly", true, false, false, false, LoadHex("#ADD8E6"));
-            bubblyKingGastropod = GastroUtility.CreateIdentifiable("Bubbly", false, true, false, false, LoadHex("#FFC0CB"));
+            bubblyGastropod = GastroUtility.CreateIdentifiable("Bubbly", false, false, false, false, false, LoadHex("#ADD8E6"));
+            bubblyQueenGastropod = GastroUtility.CreateIdentifiable("Bubbly", true, false, false, false, false, LoadHex("#ADD8E6"));
+            bubblyKingGastropod = GastroUtility.CreateIdentifiable("Bubbly", false, true, false, false, false, LoadHex("#FFC0CB"));
         }
 
         public static void Load(string sceneName)
@@ -40,6 +40,11 @@ namespace Gastropods.Data.Gastropods
                         translucentMaterial.SetColor("_TintColor", LoadHex("#ADD8E6"));
                         Material diffTranslucentMaterial = new Material(GBundle.shaders.LoadAsset("Translucent").Cast<Shader>());
                         translucentMaterial.SetColor("_TintColor", LoadHex("#FFC0CB"));
+
+                        Gastro.GASTROPOD_DIET_DICT.TryAdd(
+                            new IdentifiableType[] { bubblyGastropod, bubblyQueenGastropod, bubblyKingGastropod },
+                            new IdentifiableTypeGroup[] { Get<IdentifiableTypeGroup>("FruitGroup") }
+                        );
 
                         GastroUtility.CreateGastropod("Bubbly", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodBubbly")), bubblyGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("bubbly_shell").sharedMesh, null, CreateAccessories(false)).Item1.transform.Find("GastroParts/GastropodBody/GastropodShell").gameObject.GetComponent<MeshRenderer>().sharedMaterial = translucentMaterial;

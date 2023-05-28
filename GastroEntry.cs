@@ -16,7 +16,16 @@ namespace Gastropods
         public override void OnInitializeMelon()
         {
             ModRegistry.InjectTypes();
+
+            //var gastropodsGroup = ScriptableObject.CreateInstance<IdentifiableTypeGroup>();
+            //gastropodsGroup.name = "GastropodsGroup";
+
             ModRegistry.InitializeGastros();
+
+            //foreach (IdentifiableType identType in Gastro.GASTROPODS)
+            //{
+            //    gastropodsGroup.memberTypes.Add(identType);
+            //}
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)

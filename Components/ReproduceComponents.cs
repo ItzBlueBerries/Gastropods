@@ -63,4 +63,26 @@ namespace Gastropods.Components.ReproduceOnNearbys
             gastropodPrefab = Get<IdentifiableType>("BubblyGastropod").prefab;
         }
     }
+
+    internal class TraditionalReproduce : ReproduceOnNearby
+    {
+        public override void Start()
+        {
+            base.Start();
+            gastropodPrefab = Get<IdentifiableType>("TraditionalGastropod").prefab;
+            minReproduceTime = 24;
+            maxReproduceTime = 48;
+        }
+    }
+
+    internal class DreamyReproduce : ReproduceOnNearby
+    {
+        public override void Start()
+        {
+            base.Start();
+            gastropodPrefab = Get<IdentifiableType>("DreamyGastropod").prefab;
+            minReproduceTime = 24;
+            maxReproduceTime = 48;
+        }
+    }
 }

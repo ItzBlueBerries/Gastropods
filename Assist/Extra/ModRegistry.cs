@@ -10,6 +10,7 @@ using HarmonyLib;
 using Il2Cpp;
 using Il2CppInterop.Runtime.Injection;
 using Il2CppMonomiPark.SlimeRancher.Damage;
+using UnityEngine;
 using static Gastropods.HarmonyPatches;
 
 namespace Gastropods.Assist
@@ -52,6 +53,10 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<Components.DamagePlayerOnTouch>();
             ClassInjector.RegisterTypeInIl2Cpp<DamageSlimeOnTouch>();
             ClassInjector.RegisterTypeInIl2Cpp<AlwaysBeHoppingAround>();
+            ClassInjector.RegisterTypeInIl2Cpp<TraditionalReform>();
+            ClassInjector.RegisterTypeInIl2Cpp<DreamySuperiorCreation>();
+            ClassInjector.RegisterTypeInIl2Cpp<DreamyGSearcher>();
+            ClassInjector.RegisterTypeInIl2Cpp<NoMoreCloudsAtDaylight>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightFedVaccable>();
@@ -59,6 +64,8 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<PowderFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<HareFedVaccable>();
             ClassInjector.RegisterTypeInIl2Cpp<BubblyFedVaccable>();
+            ClassInjector.RegisterTypeInIl2Cpp<TraditionalFedVaccable>();
+            ClassInjector.RegisterTypeInIl2Cpp<DreamyFedVaccable>();
 
             ClassInjector.RegisterTypeInIl2Cpp<BrineReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<SunlightReproduce>();
@@ -66,6 +73,8 @@ namespace Gastropods.Assist
             ClassInjector.RegisterTypeInIl2Cpp<PowderReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<HareReproduce>();
             ClassInjector.RegisterTypeInIl2Cpp<BubblyReproduce>();
+            ClassInjector.RegisterTypeInIl2Cpp<TraditionalReproduce>();
+            ClassInjector.RegisterTypeInIl2Cpp<DreamyReproduce>();
 
             //ClassInjector.RegisterTypeInIl2Cpp<BrineVaccedPopup>();
             //ClassInjector.RegisterTypeInIl2Cpp<SunlightVaccedPopup>();
@@ -86,6 +95,8 @@ namespace Gastropods.Assist
             Prickly.Initialize();
             Hare.Initialize();
             Bubbly.Initialize();
+            Traditional.Initialize();
+            Dreamy.Initialize();
         }
 
         public static void LoadInstances()
@@ -101,7 +112,9 @@ namespace Gastropods.Assist
             {
                 if (Gastro.QUEEN_GASTROPODS.Contains(gastropod) || Gastro.KING_GASTROPODS.Contains(gastropod))
                     continue;
-                // Get<SlimeDefinition>("Angler").Diet.AdditionalFoodIdents = Get<SlimeDefinition>("Angler").Diet.AdditionalFoodIdents.ToArray().AddToArray(gastropod);
+                if (Gastro.NON_EATABLE_GASTROPODS.Contains(gastropod))
+                    continue;
+                    // Get<SlimeDefinition>("Angler").Diet.AdditionalFoodIdents = Get<SlimeDefinition>("Angler").Diet.AdditionalFoodIdents.ToArray().AddToArray(gastropod);
                 Get<SlimeDefinition>("Angler").Diet.FavoriteIdents = Get<SlimeDefinition>("Angler").Diet.FavoriteIdents.ToArray().AddToArray(gastropod);
             }
 
@@ -115,44 +128,86 @@ namespace Gastropods.Assist
             Prickly.Load(sceneName);
             Hare.Load(sceneName);
             Bubbly.Load(sceneName);
+            Traditional.Load(sceneName);
+            Dreamy.Load(sceneName);
         }
 
         public static void LoadSpawners(string sceneName)
         {
             #region KINGS_AND_QUEENS
-            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BrineQueenGastropod"), Get<IdentifiableType>("BrineKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
-            ModSpawner.Other.AddToPinkCanyon(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BrineQueenGastropod"), Get<IdentifiableType>("BrineKingGastropod") }, UnityEngine.Random.Range(0.05f, 0.08f));
+            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BrineQueenGastropod"), Get<IdentifiableType>("BrineKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
+            ModSpawner.Other.AddToPinkCanyon(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BrineQueenGastropod"), Get<IdentifiableType>("BrineKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
 
-            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("SunlightQueenGastropod"), Get<IdentifiableType>("SunlightKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("SunlightQueenGastropod"), Get<IdentifiableType>("SunlightKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
 
-            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PrimalQueenGastropod"), Get<IdentifiableType>("PrimalKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
+            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PrimalQueenGastropod"), Get<IdentifiableType>("PrimalKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
 
-            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PowderQueenGastropod"), Get<IdentifiableType>("PowderKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
+            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PowderQueenGastropod"), Get<IdentifiableType>("PowderKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
 
-            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
-            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
-            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
-            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
+            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
+            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
+            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("HareQueenGastropod"), Get<IdentifiableType>("HareKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
 
-            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BubblyQueenGastropod"), Get<IdentifiableType>("BubblyKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
-            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BubblyQueenGastropod"), Get<IdentifiableType>("BubblyKingGastropod") }, UnityEngine.Random.Range(0.03f, 0.05f));
+            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BubblyQueenGastropod"), Get<IdentifiableType>("BubblyKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("BubblyQueenGastropod"), Get<IdentifiableType>("BubblyKingGastropod") }, UnityEngine.Random.Range(0.003f, 0.03f));
+
+            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("TraditionalQueenGastropod"), Get<IdentifiableType>("TraditionalKingGastropod") }, 0.0025f);
+            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("TraditionalQueenGastropod"), Get<IdentifiableType>("TraditionalKingGastropod") }, 0.0025f);
             #endregion
 
             #region WITHOUT_KINGS_AND_QUEENS
-            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("ToxinGastropod") }, UnityEngine.Random.Range(0.08f, 0.09f));
-            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("ToxinGastropod") }, UnityEngine.Random.Range(0.05f, 0.08f));
-            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("ToxinGastropod") }, UnityEngine.Random.Range(0.08f, 0.09f));
+            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("ToxinGastropod") }, UnityEngine.Random.Range(0.008f, 0.08f));
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("ToxinGastropod") }, UnityEngine.Random.Range(0.005f, 0.05f));
+            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("ToxinGastropod") }, UnityEngine.Random.Range(0.008f, 0.08f));
 
             ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("UnidentifiedGastropod") }, 0.0025f);
             ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("UnidentifiedGastropod") }, 0.0025f);
             ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("UnidentifiedGastropod") }, 0.0025f);
             ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("UnidentifiedGastropod") }, 0.0025f);
 
-            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("CrepeGastropod") }, UnityEngine.Random.Range(0.08f, 0.09f));
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("CrepeGastropod") }, UnityEngine.Random.Range(0.008f, 0.08f));
 
-            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.08f, 0.09f));
-            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.05f, 0.08f));
-            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.05f, 0.08f));
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.008f, 0.08f));
+            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.005f, 0.05f));
+            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.005f, 0.05f));
+            #endregion
+
+            #region DREAMY_SPAWNS_BECAUSE_TOO_LAZY_TO_MAKE_METHODS
+            SlimeSet.Member[] members = new SlimeSet.Member[]
+            {
+                new SlimeSet.Member()
+                {
+                    identType = Get<IdentifiableType>("DreamyGastropod"),
+                    prefab = Get<IdentifiableType>("DreamyGastropod").prefab,
+                    weight = 0.004f
+                }
+            };
+
+            switch (sceneName.Contains("zoneFields") || sceneName.Contains("zoneStrand") || sceneName.Contains("zoneGorge") || sceneName.Contains("zoneBluffs"))
+            {
+                case true:
+                    {
+                        IEnumerable<DirectedSlimeSpawner> source = UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>();
+                        foreach (DirectedSlimeSpawner directedSlimeSpawner in source)
+                        {
+                            foreach (DirectedActorSpawner.SpawnConstraint spawnConstraint in directedSlimeSpawner.constraints)
+                            {
+                                if (spawnConstraint.window.timeMode == DirectedActorSpawner.TimeMode.NIGHT)
+                                {
+                                    foreach (SlimeSet.Member member in members)
+                                    {
+                                        if (spawnConstraint.slimeset.members.Contains(member))
+                                            continue;
+
+                                        spawnConstraint.slimeset.members = spawnConstraint.slimeset.members.AddItem(member).ToArray();
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
             #endregion
         }
 
@@ -174,7 +229,7 @@ namespace Gastropods.Assist
                 "Can't figure out how to get this gastropod to cooperate? Read this!",
                 "Naturally, normal gastropods are not stubborn (though some may be defensive). On the other hand for superiors like a Queen or King, they have other needs.\n" +
                 "First, lets start off with the queen. Queens do not move whatsoever, you <b><i>cannot</b></i> make them move. The only way to make them move is to feed them.\n" +
-                "How would you know what they eat? Well I'm sure you'll find out from somewhere since it is being told. Once fed, they will let you hold them onto your VacPack. " +
+                "How would you know what they eat? Well I'm sure you'll find out on your own by testing with different foods and how the gastropod reacts. Once fed, they will let you hold them onto your VacPack. " +
                 "Although there is a catch, they will only let you hold them for 3 hours straight. When the time is hit, if you're still holding them.. they'll launch themselves off. " +
                 "This could cause trouble as you could accidentally launch them off a cliff.. yikes. So be careful and maybe watch the time if you can!"
             );
@@ -259,6 +314,8 @@ namespace Gastropods.Assist
             Prickly.CreatePedia();
             Hare.CreatePedia();
             Bubbly.CreatePedia();
+            Traditional.CreatePedia();
+            Dreamy.CreatePedia();
 
             //#region SUPERIOR_GASTROPOD_PEDIAS
             //foreach (IdentifiableType gastropod in Gastro.GASTROPODS)

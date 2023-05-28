@@ -15,7 +15,7 @@ namespace Gastropods.Data.Gastropods
         private static Color[] gastroPalette = new Color[] { LoadHex("#ffd886"), LoadHex("#eba30f"), Color.white };
         private static Color[] gastroShellPalette = new Color[] { Color.white, LoadHex("#eba30f"), LoadHex("#ffd886") };
 
-        public static void Initialize() => crepeGastropod = GastroUtility.CreateIdentifiable("Crepe", false, false, false, false, LoadHex("#ffd886"));
+        public static void Initialize() => crepeGastropod = GastroUtility.CreateIdentifiable("Crepe", false, false, false, false, false, LoadHex("#ffd886"));
 
         public static void Load(string sceneName)
         {
@@ -37,7 +37,7 @@ namespace Gastropods.Data.Gastropods
 
                 "Crepe Gastropods are one of the <b>seventh gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
                 "This specific type of gastropod is not defensive but also doesn't have many special traits. " +
-                "Although they could be prioritized as all slimes that eat meat favor them and will produce <b>6 plorts</b> each feed! They're quite delicious indeed for them. " +
+                "Although they could be prioritized as all slimes favor them and will produce <b>6 plorts</b> each feed! They're quite delicious indeed for them. " +
                 "You know what though? There is much more to discover with these guys and their other types that came along with them.",
 
                 "This gastropod type cannot reproduce and has to be found spawning on its own.\n" +

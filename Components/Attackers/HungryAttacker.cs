@@ -85,11 +85,8 @@ namespace Gastropods.Components.Attackers
                 if (!obj.GetComponent<IdentifiableActor>())
                     continue;
 
-                foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
-                {
-                    if (obj.GetComponent<IdentifiableActor>().identType == gastropod)
-                        return;
-                }
+                if (Gastro.IsGastropod(obj.GetComponent<IdentifiableActor>().identType))
+                    return;
 
                 if (!Get<IdentifiableTypeGroup>("MeatGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType) || !Get<IdentifiableTypeGroup>("BaseSlimeGroup").IsMember(obj.GetComponent<IdentifiableActor>().identType))
                     continue;

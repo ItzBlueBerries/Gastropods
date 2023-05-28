@@ -10,10 +10,6 @@ using Il2CppMonomiPark.SlimeRancher.UI.Pedia;
 using Gastropods.Assist;
 using Il2CppMonomiPark.SlimeRancher;
 using Il2CppMonomiPark.SlimeRancher.DataModel;
-using System.Dynamic;
-using Gastropods.Data.Gastropods;
-using System.Linq.Expressions;
-using Il2CppMonomiPark.SlimeRancher.UI;
 
 namespace Gastropods
 {
@@ -26,6 +22,12 @@ namespace Gastropods
             {
                 foreach (IdentifiableType gastropod in Gastro.GASTROPODS)
                 {
+                    if (Gastro.NON_EATABLE_GASTROPODS.Contains(gastropod))
+                    {
+                        Get<IdentifiableTypeGroup>("VaccableNonLiquids").memberTypes.Add(gastropod);
+                        __instance.identifiableTypes.memberTypes.Add(gastropod);
+                        continue;
+                    }
                     Get<IdentifiableTypeGroup>("VaccableNonLiquids").memberTypes.Add(gastropod);
                     Get<IdentifiableTypeGroup>("MeatGroup").memberTypes.Add(gastropod);
                     gastropod.foodGroup = Get<IdentifiableTypeGroup>("MeatGroup");
@@ -38,6 +40,8 @@ namespace Gastropods
                     Get<IdentifiableTypeGroup>("CraftGroup").memberTypes.Add(resource);
                     // __instance.identifiableTypes.memberTypes.Add(resource);
                 }
+
+                // __instance.identifiableTypes.memberGroups.Add(Get<IdentifiableTypeGroup>("GastropodsGroup"));
             }
         }
 
@@ -285,8 +289,8 @@ namespace Gastropods
                     SlimeDefinition slimeDefinition = definition.Cast<SlimeDefinition>();
                     if (slimeDefinition == null || slimeDefinition.Diet == null)
                         continue;
-                    if (!slimeDefinition.Diet.MajorFoodIdentifiableTypeGroups.Contains(Get<IdentifiableTypeGroup>("MeatGroup")))
-                        continue;
+                    //if (!slimeDefinition.Diet.MajorFoodIdentifiableTypeGroups.Contains(Get<IdentifiableTypeGroup>("MeatGroup")))
+                    //    continue;
                     if (__instance.slimeDefinition == slimeDefinition)
                     {
                         if (em.eatsIdent == Get<IdentifiableType>("CrepeGastropod"))
