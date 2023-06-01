@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Gastropods.HarmonyPatches;
-using static UnityEngine.Localization.Metadata.SharedTableCollectionMetadata;
 using Gastropods.Components.Behaviours;
 
 namespace Gastropods.Data.Gastropods
@@ -43,10 +42,12 @@ namespace Gastropods.Data.Gastropods
                 case "GameCore":
                     {
                         Material dreamyMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
-                        dreamyMaterial.SetSlimeColor(gastroPalette[0], gastroPalette[1], gastroPalette[2]);
+                        dreamyMaterial.SetSlimeColor(gastroDiffPalette[0], gastroDiffPalette[1], gastroDiffPalette[2]);
 
                         Material diffDreamyMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
-                        diffDreamyMaterial.SetSlimeColor(gastroDiffPalette[0], gastroDiffPalette[1], gastroDiffPalette[2]);
+                        diffDreamyMaterial.SetSlimeColor(gastroPalette[0], gastroPalette[1], gastroPalette[2]);
+
+                        // lol looks better with a switcheroo
 
                         Material pinkEyesMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
                         pinkEyesMaterial.SetSlimeColor(LoadHex("#FFC0CB"), LoadHex("#FFC0CB"), LoadHex("#FFC0CB"));
@@ -57,7 +58,7 @@ namespace Gastropods.Data.Gastropods
                         );
 
                         // too lazy to do fields and such
-                        GameObject dreamyPrefab = GastroUtility.CreateGastropod("Dreamy", true, false, true, false, null, dreamyGastropod, gastroPalette, gastroShellPalette, null,
+                        GameObject dreamyPrefab = GastroUtility.CreateGastropod("Dreamy", true, false, true, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodDreamy")), dreamyGastropod, gastroPalette, gastroShellPalette, null,
                             GBundle.models.LoadFromObject<MeshFilter>("dreamy_shell").sharedMesh, null, CreateAccessories(false)).Item1;
                         dreamyPrefab.AddComponents(Il2CppType.Of<DreamySuperiorCreation>(), Il2CppType.Of<DreamyGSearcher>(), Il2CppType.Of<NoMoreCloudsAtDaylight>());
                         dreamyPrefab.transform.Find("GastroParts/GastropodBody/GastropodShell").GetComponent<MeshRenderer>().material = dreamyMaterial;

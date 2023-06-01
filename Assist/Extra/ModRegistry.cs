@@ -97,6 +97,7 @@ namespace Gastropods.Assist
             Bubbly.Initialize();
             Traditional.Initialize();
             Dreamy.Initialize();
+            Crowned.Initialize();
         }
 
         public static void LoadInstances()
@@ -130,6 +131,7 @@ namespace Gastropods.Assist
             Bubbly.Load(sceneName);
             Traditional.Load(sceneName);
             Dreamy.Load(sceneName);
+            Crowned.Load(sceneName);
         }
 
         public static void LoadSpawners(string sceneName)
@@ -171,6 +173,13 @@ namespace Gastropods.Assist
             ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.008f, 0.08f));
             ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.005f, 0.05f));
             ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("PricklyGastropod") }, UnityEngine.Random.Range(0.005f, 0.05f));
+            #endregion
+
+            #region SUPREMES_BECAUSE_YES
+            ModSpawner.AddToFields(sceneName, new IdentifiableType[] { Get<IdentifiableType>("CrownedGastropod") }, 0.0005f);
+            ModSpawner.AddToStrand(sceneName, new IdentifiableType[] { Get<IdentifiableType>("CrownedGastropod") }, 0.0005f);
+            ModSpawner.AddToGorge(sceneName, new IdentifiableType[] { Get<IdentifiableType>("CrownedGastropod") }, 0.0005f);
+            ModSpawner.AddToBluffs(sceneName, new IdentifiableType[] { Get<IdentifiableType>("CrownedGastropod") }, 0.0005f);
             #endregion
 
             #region DREAMY_SPAWNS_BECAUSE_TOO_LAZY_TO_MAKE_METHODS
@@ -316,6 +325,7 @@ namespace Gastropods.Assist
             Bubbly.CreatePedia();
             Traditional.CreatePedia();
             Dreamy.CreatePedia();
+            Crowned.CreatePedia();
 
             //#region SUPERIOR_GASTROPOD_PEDIAS
             //foreach (IdentifiableType gastropod in Gastro.GASTROPODS)

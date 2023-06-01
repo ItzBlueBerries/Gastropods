@@ -28,103 +28,72 @@ namespace Gastropods.Data.Gastropods
             {
                 case "GameCore":
                     {
-                        Material whiteEyesMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
-                        whiteEyesMaterial.SetSlimeColor(Color.white, Color.white, Color.white);
-
                         // too lazy to do fields and such
-                        GameObject crownedPrefab = GastroUtility.CreateGastropod("Dreamy", false, false, false, false, null, crownedGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories()).Item1;
-                        crownedPrefab.AddComponents(Il2CppType.Of<DreamySuperiorCreation>(), Il2CppType.Of<DreamyGSearcher>(), Il2CppType.Of<NoMoreCloudsAtDaylight>());
+                        GameObject crownedPrefab = GastroUtility.CreateGastropod("Crowned", false, false, false, false, CreateSprite(LoadImage("Files.Icons.Gastropods.iconGastropodCrowned")), crownedGastropod, gastroPalette, gastroShellPalette, null, null, null, CreateAccessories()).Item1;
                         UnityEngine.Object.Destroy(crownedPrefab.transform.Find("GastroParts/GastropodBody/GastropodShell").gameObject);
-                        crownedPrefab.transform.Find("GastroParts/GastropodBody/GastropodEyes").GetComponent<MeshRenderer>().material = whiteEyesMaterial;
                         break;
                     }
             }
         }
 
+
         public static void CreatePedia()
         {
             GastroUtility.CreatePediaEntry(crownedGastropod, "Crowned",
-                "Pure royalty. Higher than brine? EhhHhhHhhhhh",
+                "Pure royalty. Higher than Brine? EhhHhhHhhhhh",
 
                 "Crowned Gastropods are one of the <b>first supreme gastropods</b> to set.. foot (?) on Rainbow Island.\n" +
                 "While being the first supreme, they have power. Though this power is hidden for some mysterious reason which is still being researched on.. " +
-                "...While the powers are still being discovered, once discovered this entry will be updated.. " +
+                "...While the powers are still being discovered, once discovered this entry will be updated.. so much to find out. " +
                 "You know what though? There is much more to discover with these guys and their other types that came along with them.",
 
-                "For you to reproduce this specific gastropod type, they require <b>2 superior gastropods. Queen and King of their corresponding type.</b>\n" +
-                "First you must obtain a Queen & King of their typing <i>(ex: Brine King Gastropod)</i>. Afterwards, place them somewhere nearby to eachother. " +
-                "Every few hours, the queen will search for a king to reproduce with as long as they're nearby. Once they find their king, they will reproduce within a certain interval!\n" +
-                "This is how you get more gastropods on your ranch, it doesn't take long for them to mass produce so make sure to empty them out when you need to!"
+                "This gastropod type cannot reproduce and has to be found spawning on its own.\n" +
+                "This means it is incapable of being mass produced, have fun saving them up!"
             );
-            PatchPediaDirector.AddIdentifiablePage("Dreamy", 2,
+            PatchPediaDirector.AddIdentifiablePage("Crowned", 2,
                 "<b>    Origin   </b>\n" +
-                "Only Supreme's get this kind of descriptive addition to their pedia entries, which will be explained here.\n" +
-                "Dreamy may have took a while to arrive on Rainbow Island but they were had some of the best abilities. " +
-                "Technically, Dreamy can be found on its own as <b>their superiors do not actually exist</b>. How're they reproduced then? " +
-                "Dreamy has the power to <b>create their own superiors</b>, though without the best visual qualities. At randomized times (long intervals) they'll create <b>one of them</b> in order to feel company but also give them the power of superiors.\n" +
-                "Now that there is information on them being powerful and what they do for the ability of reproduction with their typing, what about the Supreme part? " +
-                "Well Dreamy was technically going to be a supreme member but has denied of this. As an almost and worthy of being a supreme member, this is added to the entry."
+                "When Crowned arrived they were already unique. A gastropod without a shell but a very large confidant that resembled a crown.\n" +
+                "Sooner or later they were considered royalty, their mysterious powers protected the other gastropods which made them loyal. " +
+                "Before this though, they were just like any other gastropod. Some grew to be superiors which were pratically considered the higher ups.\n" +
+                "Crowned never grew though, as being a singular gastropod.. but soon to be supreme. Once they started to be considered as royalty, that's when the supreme gastropods were formed. " +
+                "5 Gastropods (including Crowned) were to be supreme members. What were the requirements? Offering protection, great power and anything else that qualifies to be higher than the usual superiors.\n" +
+                "Once there was a gastropod that declined when they were offered, I guess another one took the spot then. Supreme members are hard to find but Crowned could lead you to them."
             );
-            PatchPediaDirector.AddIdentifiablePage("Dreamy", 3,
-                "Another part of the Dreamy Gastropod is their confidant. Dreamy has a confidant who is a Star.\n" +
+            PatchPediaDirector.AddIdentifiablePage("Crowned", 3,
+                "Another part of the Crowned Gastropod is their confidant. Crowned has a confidant who is a Crown.\n" +
                 "This confidant protects them from potential threats when they can. " +
                 "This can make them more difficult to reproduce and feed to slimes but you'll have to find a workaround.\n" +
-                "Dreamy is also a powerful one, defensive of course and will not allow slimes to touch them as long as their clouds are visible during the night.\n" +
-                "Another known fact of the Dreamy Gastropod is that they love wondering around. They'll search for nearby gastropods for fun and is more active than other gastropods. " +
-                "Once daylight hits, they'll stop and possibly return to their superiors. Overall, Dreamy is a handful."
+                "Crowned has a mysterious power that is yet to be revealed."
             );
-            PatchPediaDirector.AddIdentifiablePage("Dreamy", 4,
-                "This is a type of gastropod that'll somewhat have kings & queens.\n" +
-                "They do spawn on their own and could be reproduced by a superior. Superiors do not spawn on their own.\n" +
-                "This gastropod type specifically spawns everywhere at around nighttime."
+            PatchPediaDirector.AddIdentifiablePage("Crowned", 4,
+                "This is a type of gastropod that doesn't have kings & queens.\n" +
+                "They do spawn on their own and require to be found. They cannot reproduce whatsoever.\n" +
+                "This gastropod type specifically spawns everywhere."
             );
         }
 
 
         private static GameObject[] CreateAccessories()
         {
-            Material dreamyMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
-            dreamyMaterial.SetSlimeColor(gastroPalette[0], gastroPalette[1], gastroPalette[2]);
-
-            Material starMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
-            starMaterial.SetSlimeColor(Color.yellow, Color.yellow, Color.yellow);
+            Material crownMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
+            crownMaterial.SetSlimeColor(LoadHex("#F6BE00"), LoadHex("#F6BE00"), LoadHex("#F6BE00"));
 
             Material blackEyesMaterial = UnityEngine.Object.Instantiate(Get<SlimeDefinition>("Pink").GetSlimeMat(0));
             blackEyesMaterial.SetSlimeColor(Color.black, Color.black, Color.black);
 
-            if (!isSuperior)
-            {
-                GameObject dreamyClouds;
-                GameObject dreamyCloudsStars;
-                GameObject dreamyStar;
-                GameObject dreamyStarEyes;
+            GameObject crownedCrown;
+            GameObject crownedCrownEyes;
 
-                dreamyClouds = new GameObject("DreamyClouds");
-                dreamyClouds.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("dreamy_clouds").sharedMesh;
-                dreamyClouds.AddComponent<MeshRenderer>().sharedMaterial = dreamyMaterial;
-                dreamyClouds.AddComponent<ObjectRotation>();
-                dreamyClouds.AddComponent<BounceActorOnCollision>();
+            crownedCrown = new GameObject("CrownedCrown");
+            crownedCrown.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("crowned_crown").sharedMesh;
+            crownedCrown.AddComponent<MeshRenderer>().sharedMaterial = crownMaterial;
 
-                dreamyCloudsStars = new GameObject("DreamyCloudsStars");
-                dreamyCloudsStars.transform.parent = dreamyClouds.transform;
-                dreamyCloudsStars.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("dreamy_clouds_stars").sharedMesh;
-                dreamyCloudsStars.AddComponent<MeshRenderer>().sharedMaterial = starMaterial;
+            crownedCrownEyes = new GameObject("CrownedCrownEyes");
+            crownedCrownEyes.transform.parent = crownedCrown.transform;
+            crownedCrownEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("crowned_crown_eyes").sharedMesh;
+            crownedCrownEyes.AddComponent<MeshRenderer>().sharedMaterial = blackEyesMaterial;
 
-                dreamyStar = new GameObject("DreamyStar");
-                dreamyStar.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("dreamy_star").sharedMesh;
-                dreamyStar.AddComponent<MeshRenderer>().sharedMaterial = starMaterial;
-
-                dreamyStarEyes = new GameObject("DreamyStarEyes");
-                dreamyStarEyes.transform.parent = dreamyStar.transform;
-                dreamyStarEyes.AddComponent<MeshFilter>().sharedMesh = GBundle.models.LoadFromObject<MeshFilter>("dreamy_star_eyes").sharedMesh;
-                dreamyStarEyes.AddComponent<MeshRenderer>().sharedMaterial = blackEyesMaterial;
-
-                return new GameObject[] { dreamyClouds, dreamyStar };
-            }
-            else if (isSuperior)
-                return new GameObject[] { };
-
-            return new GameObject[] { };
+            return new GameObject[] { crownedCrown };
         }
     }
 }

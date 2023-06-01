@@ -10,9 +10,9 @@
     <PackageProjectUrl></PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ItzBlueBerries/Gastropods</RepositoryUrl>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.1.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,7 @@
     <Compile Remove="Components\Archived\DamageSlimeOnTouch.cs" />
     <Compile Remove="Components\Archived\GastropodRandomMove.cs" />
     <Compile Remove="Components\Archived\GastropodType.cs" />
+    <Compile Remove="Components\Archived\HarpoonAttackerV2.cs" />
     <Compile Remove="Components\Archived\JuicyProduction.cs" />
     <Compile Remove="Components\Archived\PopupComponents.cs" />
     <Compile Remove="Components\Archived\ShellRetreat.cs" />
@@ -39,15 +40,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Files\Icons\Categories\iconCategoryGastropodsCrowned.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodCrowned.png" />
+    <None Remove="Files\Icons\Gastropods\iconGastropodDreamy.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Files\ABs\anims" />
     <EmbeddedResource Include="Files\ABs\models" />
     <EmbeddedResource Include="Files\ABs\shaders" />
     <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropods.png" />
+    <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropodsCrowned.png" />
     <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropodsHare.png" />
     <EmbeddedResource Include="Files\Icons\Categories\iconCategoryGastropodsToxin.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodBrine.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodBubbly.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodCrepe.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodCrowned.png" />
+    <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodDreamy.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodHare.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPowder.png" />
     <EmbeddedResource Include="Files\Icons\Gastropods\iconGastropodPrickly.png" />
@@ -66,13 +76,13 @@
     <None Include="Components\Archived\CompanionController.cs" />
     <None Include="Components\Archived\GastropodRandomMove.cs" />
     <None Include="Components\Archived\GastropodType.cs" />
+    <None Include="Components\Archived\HarpoonAttackerV2.cs" />
     <None Include="Components\Archived\JuicyProduction.cs" />
     <None Include="Components\Archived\PopupComponents.cs" />
     <None Include="Components\Archived\ShellRetreat.cs" />
     <None Include="Components\Archived\SlimeAttraction.cs" />
     <None Include="Components\Archived\ConfidantAttack.cs" />
     <None Include="Components\Archived\ConfidantController.cs" />
-    <None Include="Components\Attackers\HarpoonAttackerV2.cs" />
     <None Include="Data\Archived\Confidants\Fish.cs" />
     <None Include="Data\Archived\Resources\SuperiorsFavJuice.cs" />
   </ItemGroup>

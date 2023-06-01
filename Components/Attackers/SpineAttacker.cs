@@ -17,12 +17,11 @@ namespace Gastropods.Components.Attackers
         private int totalSpinesLeft;
         // private int dividedSpineCount;
         private double timeTillRefill;
+        private double delayTime;
         private bool refilling;
-        private bool delaying;
 
         public GameObject spinePrefab;
         public int spineCount = 36;
-        public int delayMilliseconds = 1000;
         public float reloadTime = 2;
 
         void Start()
@@ -59,6 +58,9 @@ namespace Gastropods.Components.Attackers
                 timeTillRefill = default;
                 refilling = false;
             }
+
+            if (delayTime != default && timeDir.HasReached(delayTime))
+                delayTime = default;
         }
 
         public int GetSpinesCount() => totalSpinesLeft;
@@ -69,19 +71,17 @@ namespace Gastropods.Components.Attackers
 
         public void DeactivateShellSpines() { transform.Find("GastroParts/GastroDeco/PricklyShellSpines").gameObject.SetActive(false); }
 
-        async void SetDelaying()
-        {
-            delaying = true;
-            await Task.Delay(delayMilliseconds);
-            delaying = false;
-        }
+        void SetDelayTime() => delayTime = timeDir.HoursFromNowOrStart(0.01f);
 
         void ShootSpine(GameObject obj)
         {
             if (refilling)
                 return;
 
-            if (delaying)
+            if (delayTime != default)
+                return;
+
+            if (Get<IdentifiableTypeGroup>("LargoGroup").IsMember(GetIdentType(obj)))
                 return;
 
             if (!(Vector3.Distance(transform.position, obj.transform.position) <= 8))
@@ -99,7 +99,7 @@ namespace Gastropods.Components.Attackers
 
             Destroy(instantiatedSpine, 1);
             totalSpinesLeft -= 1;
-            SetDelaying();
+            SetDelayTime();
         }
 
         GameObject GenerateDefaultPrefab()

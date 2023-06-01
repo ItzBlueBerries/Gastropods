@@ -30,7 +30,7 @@ namespace Gastropods.Components.Behaviours
         {
             if (target != null && !IsNighttime())
                 target = null;
-            if (target != null && IsNighttime() && delayTime != default && timeDir.OnPassedTime(delayTime))
+            if (target != null && IsNighttime() && delayTime != default && timeDir.HasReached(delayTime))
             {
                 FindGastropodInScene();
                 delayTime = default;
@@ -41,7 +41,7 @@ namespace Gastropods.Components.Behaviours
 
         bool IsNighttime() => timeDir.CurrHourOrStart() >= 18 || timeDir.CurrHourOrStart() < 6;
 
-        void SetDelayTime() => delayTime = timeDir.WorldTime() + 0.08;
+        void SetDelayTime() => delayTime = timeDir.HoursFromNowOrStart(0.08f);
 
         void FindGastropodInScene()
         {

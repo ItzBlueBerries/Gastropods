@@ -15,13 +15,13 @@ namespace Gastropods.Components.Behaviours
         
         void Update()
         {
-            if (IsDaytime() && transform.Find("GastroParts/GastroDeco/DreamyClouds").gameObject.active)
+            if (!IsNighttime() && transform.Find("GastroParts/GastroDeco/DreamyClouds").gameObject.active)
                 DisableClouds();
-            if (!IsDaytime() && !transform.Find("GastroParts/GastroDeco/DreamyClouds").gameObject.active)
+            if (IsNighttime() && !transform.Find("GastroParts/GastroDeco/DreamyClouds").gameObject.active)
                 EnableClouds();
         }
 
-        bool IsDaytime() => timeDir.CurrHourOrStart() < 18 || timeDir.CurrHourOrStart() >= 6;
+        bool IsNighttime() => timeDir.CurrHourOrStart() >= 18 || timeDir.CurrHourOrStart() < 6;
 
         void DisableClouds() => transform.Find("GastroParts/GastroDeco/DreamyClouds").gameObject.SetActive(false);
 

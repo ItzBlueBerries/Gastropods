@@ -22,7 +22,7 @@ namespace Gastropods.Data.Gastropods
 
         public static void Initialize()
         {
-            toxinGastropod = GastroUtility.CreateIdentifiable("Toxin", false, false, true, false, LoadHex("#A020F0"));
+            toxinGastropod = GastroUtility.CreateIdentifiable("Toxin", false, false, true, false, false, LoadHex("#A020F0"));
             Gastro.DO_SOMETHING_GASTROPODS.Add(toxinGastropod);
         }
 

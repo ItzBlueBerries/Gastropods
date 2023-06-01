@@ -12,13 +12,12 @@ namespace Gastropods.Components.Attackers
     {
         private TimeDirector timeDir;
         private Rigidbody gastroBody;
-        private List<GameObject> eatenObjects = new List<GameObject>();
         private Transform target;
         private double fullTime;
         private double searchTime;
+        private double delayTime;
         private int amountLeft;
         private bool isFull;
-        private bool eatenTarget;
 
         public float moveSpeed = 5;
         public float rotationSpeed = 5;
@@ -65,12 +64,7 @@ namespace Gastropods.Components.Attackers
 
         void FixedUpdate() => MoveToFood();
 
-        IEnumerator SetEatenTarget()
-        {
-            eatenTarget = true;
-            yield return new WaitForSeconds(1.0f);
-            eatenTarget = false;
-        }
+        void SetDelayTime() => delayTime = timeDir.WorldTime() + 0.1;
 
         void FindFoodInScene()
         {
@@ -116,9 +110,7 @@ namespace Gastropods.Components.Attackers
                 SRBehaviour.SpawnAndPlayFX(Get<SlimeDefinition>("Pink").prefab.GetComponent<SlimeEat>().EatFX, transform.position, transform.rotation);
                 Destroyer.DestroyActor(obj, "HungryAttacker.OnCollisionEnter");
                 amountLeft -= 1;
-
-                eatenObjects.Add(obj);
-                StartCoroutine("SetEatenTarget");
+                SetDelayTime();
             }
         }
 
@@ -129,10 +121,7 @@ namespace Gastropods.Components.Attackers
 
             GameObject obj = collision.gameObject;
 
-            if (eatenObjects.Contains(obj))
-                return;
-
-            if (eatenTarget)
+            if (delayTime != default)
                 return;
 
             if (!obj.GetComponent<Rigidbody>())
