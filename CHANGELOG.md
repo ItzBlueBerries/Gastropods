@@ -2,6 +2,10 @@
 
 - Initial Mod Release!
 
+# [v1.0.1]
+
+- Fixed save breaking issue.
+
 # [v2.0]
 
 [CHANGES]
