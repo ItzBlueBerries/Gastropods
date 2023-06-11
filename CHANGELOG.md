@@ -8,36 +8,36 @@
 
 # [v2.0]
 
-## [CHANGES]
+### [CHANGES]
 - Powder Gastropods are now exclusive to Powderfall Bluffs.
 - Unidentified now has an icon.
 - Reworked Toxin Gastropods harpoon attacker.
 - Rarer randomized gastropod spawn chances.
 - Tbh a lot of code changes / new things, basically what makes this v2 (might be a bit buggy if I forgot anything, etc)
 
-## [SUPREMES]
+### [SUPREMES]
 - Crowned Gastropod
 
-## [RARES]
+### [RARES]
 - Traditional Gastropod
 
-## [GASTROPODS]
+### [GASTROPODS]
 - Crepe Gastropod (Singular)
 - Prickly Gastropod (Singular)
 - Hare Gastropod
 - Bubbly Gastropod
 - Dreamy Gastropod (Semi-Singular?)
 
-## [FEATURES]
+### [FEATURES]
 - Supreme Gastropods (Rarest of them all? Higher than Superiors? New supreme every certain amount of gastropods? Maybe.)
 - Gastropod Pedia Category (+ Gastropod Pedia Entries)
 - Pedia Tutorials (+ Stubborn, Reproduce, Defensive)
 
-## [ITEMS]
+### [ITEMS]
 - None ;-;, I tried but failed so maybe next time
 
 # [V2.0.1]
 
-## [CHANGES]
+### [CHANGES]
 - Some Gastropod category icon code (forgot to add this into the code)
 - Whatever else I may have changed like removing unused textures
