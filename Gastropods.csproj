@@ -69,7 +69,6 @@
     <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialDefensivePlusAttackers.png" />
     <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialReproduceGastropod.png" />
     <EmbeddedResource Include="Files\Icons\Tutorials\iconTutorialStubbornGastropod.png" />
-    <EmbeddedResource Include="Files\Textures\cosmic_tex.png" />
   </ItemGroup>
 
   <ItemGroup>

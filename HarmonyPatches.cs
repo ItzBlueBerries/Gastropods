@@ -71,7 +71,8 @@ namespace Gastropods
                 {
                     CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropods")),
                     CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsToxin")),
-                    CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsHare"))
+                    CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsHare")),
+                    CreateSprite(LoadImage("Files.Icons.Categories.iconCategoryGastropodsCrowned"))
                 };
 
                 if (Get<PediaEntryCategory>("Gastropods"))

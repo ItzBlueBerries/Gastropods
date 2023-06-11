@@ -6,7 +6,7 @@ using Gastropods.Components;
 using Il2Cpp;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(GastroEntry), "Gastropods", "1.1.0", "FruitsyOG")]
+[assembly: MelonInfo(typeof(GastroEntry), "Gastropods", "2.0.1", "FruitsyOG")]
 [assembly: MelonGame("MonomiPark", "SlimeRancher2")]
 [assembly: MelonColor(0, 0, 170, 255)]
 namespace Gastropods
